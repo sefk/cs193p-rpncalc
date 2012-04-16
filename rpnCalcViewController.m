@@ -3,7 +3,7 @@
 //  rpnCalc
 //
 //  Created by Sef Kloninger on 4/13/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Peek 222. All rights reserved.
 //
 
 #import "rpnCalcViewController.h"
@@ -17,6 +17,8 @@
 
 @end
 
+
+const double pi = 3.14159;
 
 
 @implementation rpnCalcViewController
@@ -53,11 +55,13 @@
 // PUBLIC FUNCTIONS
 //
 
-- (IBAction)buttonPress:(UIButton *)sender {
+- (IBAction)buttonPress:(UIButton *)sender 
+{
     [self addCharToDisplay:sender.currentTitle];
 }
 
-- (IBAction)operationPress:(UIButton *)sender {
+- (IBAction)operationPress:(UIButton *)sender 
+{
     // if they are in the middle of entering a number, and haven't
     // pushed enter yet, then do it for them
     if (self.entering) [self enterPress];
@@ -70,16 +74,18 @@
 }
 
 
-- (IBAction)enterPress {
+- (IBAction)enterPress 
+{
     [self.stack push:[self.display.text doubleValue]];
     self.display.text = @"0";
     self.entering = NO;
 }
 
-- (IBAction)decimalPress:(UIButton *)sender {
+- (IBAction)decimalPress:(UIButton *)sender 
+{
     if (self.entering && 
         [self.display.text rangeOfString:@"."].location != NSNotFound ) {
-        // already a decimal point, dont do anything
+        // already a decimal point, don't do anything
         return;
     }
     if (!self.entering) {
@@ -89,17 +95,35 @@
 }
 
 
-- (IBAction)clearPress:(UIButton *)sender {
+- (IBAction)clearPress:(UIButton *)sender 
+{
     self.display.text = @"0";
     self.entering = NO;
 }
 
 
-- (IBAction)allClearPress:(UIButton *)sender {
+- (IBAction)allClearPress:(UIButton *)sender 
+{
     [self clearPress:sender];
     [self.stack clear];
 }
 
+- (IBAction)piPress:(UIButton *)sender 
+{
+    double result;
+    
+    if (self.entering) {
+        [self enterPress];
+        [self.stack push:pi];
+        result = [self.stack operate:@"*"];
+    } else {
+        [self.stack push:pi];        
+        result = pi;
+    }
+    
+    NSString * resultString = [NSString stringWithFormat:@"%g", result];
+    self.display.text = resultString;
+}
 
 
 @end

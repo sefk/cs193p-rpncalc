@@ -321,6 +321,21 @@
                                     <action selector="operationPress:" destination="2" eventType="touchUpInside" id="yXg-Gt-xJD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bIp-hp-D0L">
+                                <rect key="frame" x="20" y="309" width="64" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="pi">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="piPress:" destination="2" eventType="touchUpInside" id="0fa-Fn-JCO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -329,7 +344,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-1564" y="210"/>
+            <point key="canvasLocation" x="-1765" y="215"/>
         </scene>
     </scenes>
     <classes>
