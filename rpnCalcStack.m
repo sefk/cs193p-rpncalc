@@ -93,7 +93,13 @@
         } else if ([op isEqualToString:@"-"]) {
             result = (-1 * [self pop]) + [self pop];
         } else if ([op isEqualToString:@"/"]) {
-            result = (1/[self pop]) * [self pop];
+            double op1 = [self pop];
+            double op2 = [self pop];
+            if (op1 == 0) {
+                result = 0;   // handle div by zero case
+            } else {
+                result = op2 / op1;
+            }
         } else if ([op isEqualToString:@"*"]) {
             result = [self pop] * [self pop];
         } else {
