@@ -61,26 +61,46 @@
 }
     
 
+// TODO: replace this clunky error checking with exceptions.
+
 - (double) operate:(NSString *)op
 {
-    if (self.myStack.count < 2) {
-        NSLog(@"stack: not enough items on stack for operation");
-        return 0;
-    }
-    
     double result;
     
-    if ([op isEqualToString:@"+"]) {
-        result = [self pop] + [self pop];
-    } else if ([op isEqualToString:@"-"]) {
-        result = (-1 * [self pop]) + [self pop];
-    } else if ([op isEqualToString:@"/"]) {
-        result = (1/[self pop]) * [self pop];
-    } else if ([op isEqualToString:@"*"]) {
-        result = [self pop] * [self pop];
-    } else {
-        NSLog(@"stack: invalid operand: \"%@\"", op);
+    // One Operand Ops 
+
+    if (self.myStack.count < 1) {
+        NSLog(@"stack: operation \"%@\" requires at least one items on the stack", op);
         return 0;
+    }
+
+    if ([op isEqualToString:@"sqrt"]) {
+        result = sqrt([self pop]);
+    } else if ([op isEqualToString:@"x**2"]) {
+        double num = [self pop];
+        result = num * num;
+    } else {
+    
+        
+        // Two Operand Ops
+
+        if (self.myStack.count < 2) {
+            NSLog(@"stack: operation \"%@\" requires at least two items on the stack", op);
+            return 0;
+        }
+    
+        if ([op isEqualToString:@"+"]) {
+            result = [self pop] + [self pop];
+        } else if ([op isEqualToString:@"-"]) {
+            result = (-1 * [self pop]) + [self pop];
+        } else if ([op isEqualToString:@"/"]) {
+            result = (1/[self pop]) * [self pop];
+        } else if ([op isEqualToString:@"*"]) {
+            result = [self pop] * [self pop];
+        } else {
+            NSLog(@"stack: invalid operand: \"%@\"", op);
+            return 0;
+        }
     }
    
     [self push:result];
