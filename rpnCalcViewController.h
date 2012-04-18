@@ -10,5 +10,6 @@
 
 @interface rpnCalcViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *display;
+@property (weak, nonatomic) IBOutlet UILabel *dispStack;
 
 @end

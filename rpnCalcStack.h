@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+const double pi;
+
 @interface rpnCalcStack : NSObject
 
 - (void)   push:(double)num;

@@ -9,24 +9,22 @@
 #import "rpnCalcViewController.h"
 #import "rpnCalcStack.h"
 
+
 @interface rpnCalcViewController ()
 @property (nonatomic) BOOL entering;
 @property (nonatomic, strong) rpnCalcStack *stack;
 
-- (void)addCharToDisplay:(NSString *)digit;
+- (void)addDigitToDisplay:(NSString *)digit;
 
 @end
 
 
-const double pi = 3.14159;
-
-
 @implementation rpnCalcViewController
-@synthesize display = _display;
+
 @synthesize entering = _entering;
 
-
-
+@synthesize display = _display;
+@synthesize dispStack = _dispStack;
 
 @synthesize stack = _stack;
 
@@ -40,7 +38,7 @@ const double pi = 3.14159;
 // HELPER FUNCTIONS (PRIVATE)
 //
 
-- (void)addCharToDisplay:(NSString *)digit
+- (void)addDigitToDisplay:(NSString *)digit
 {
     if (self.entering) {
         self.display.text = [self.display.text stringByAppendingString:digit];
@@ -50,6 +48,10 @@ const double pi = 3.14159;
     }    
 }
 
+- (void)addItemToDispStack:(NSString *)item
+{
+    self.dispStack.text = [self.dispStack.text stringByAppendingFormat:@" %@", item];
+}
 
 //
 // PUBLIC FUNCTIONS
@@ -57,27 +59,32 @@ const double pi = 3.14159;
 
 - (IBAction)buttonPress:(UIButton *)sender 
 {
-    [self addCharToDisplay:sender.currentTitle];
+    [self addDigitToDisplay:sender.currentTitle];
 }
 
 - (IBAction)operationPress:(UIButton *)sender 
 {
-    // if they are in the middle of entering a number, and haven't
-    // pushed enter yet, then do it for them
-    if (self.entering) [self enterPress];
+    // push on to stack whether or not they are entering a number.  This enables the
+    // behavior "5 <enter> <plus>" = 10
+    [self enterPress];
+    self.entering = NO;
     
+    // [stack op] is expecting the operands on the stack
     NSString *op = sender.currentTitle;
     double result = [self.stack operate:op];
+    
+    [self addItemToDispStack:op];    
+
     NSString * resultString = [NSString stringWithFormat:@"%g", result];
     self.display.text = resultString;
-    self.entering = NO;
 }
 
 
 - (IBAction)enterPress 
 {
     [self.stack push:[self.display.text doubleValue]];
-    self.display.text = @"0";
+    [self addItemToDispStack:self.display.text];
+    
     self.entering = NO;
 }
 
@@ -89,7 +96,7 @@ const double pi = 3.14159;
         return;
     }
     if (!self.entering) {
-        [self addCharToDisplay:@"0"];
+        [self addDigitToDisplay:@"0"];
     }
     [self buttonPress:sender];
 }
@@ -105,7 +112,9 @@ const double pi = 3.14159;
 - (IBAction)allClearPress:(UIButton *)sender 
 {
     [self clearPress:sender];
+    
     [self.stack clear];
+    self.dispStack.text = @"";
 }
 
 - (IBAction)piPress:(UIButton *)sender 
@@ -126,4 +135,8 @@ const double pi = 3.14159;
 }
 
 
+- (void)viewDidUnload {
+    [self setDispStack:nil];
+    [super viewDidUnload];
+}
 @end
