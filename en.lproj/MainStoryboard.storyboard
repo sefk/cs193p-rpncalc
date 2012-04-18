@@ -377,14 +377,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="dispStack" destination="l3v-7E-6qf" id="hRx-mz-Th9"/>
-                        <outlet property="display" destination="HZu-mN-Ka8" id="fRR-UE-7Bg"/>
+                        <outlet property="displayCurrent" destination="HZu-mN-Ka8" id="8hE-3Q-lUe"/>
+                        <outlet property="displayLog" destination="l3v-7E-6qf" id="q5x-lO-xeI"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-2014" y="193"/>
+            <point key="canvasLocation" x="-2044" y="108"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="rpnCalcViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/rpnCalcViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="displayCurrent" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="displayLog" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -14,7 +14,8 @@
 @property (nonatomic) BOOL entering;
 @property (nonatomic, strong) rpnCalcStack *stack;
 
-- (void)addDigitToDisplay:(NSString *)digit;
+// - (void)addDigitToDisplayCurrent:(NSString *)digit;
+// - (void)addItemToDisplayLog:(NSString *)item;
 
 @end
 
@@ -23,8 +24,8 @@
 
 @synthesize entering = _entering;
 
-@synthesize display = _display;
-@synthesize dispStack = _dispStack;
+@synthesize displayCurrent = _displayCurrent;
+@synthesize displayLog = _displayLog;
 
 @synthesize stack = _stack;
 
@@ -38,19 +39,19 @@
 // HELPER FUNCTIONS (PRIVATE)
 //
 
-- (void)addDigitToDisplay:(NSString *)digit
+- (void)addDigitToDisplayCurrent:(NSString *)digit
 {
     if (self.entering) {
-        self.display.text = [self.display.text stringByAppendingString:digit];
+        self.displayCurrent.text = [self.displayCurrent.text stringByAppendingString:digit];
     } else {
-        self.display.text = digit;
+        self.displayCurrent.text = digit;
         self.entering = YES;
     }    
 }
 
-- (void)addItemToDispStack:(NSString *)item
+- (void)addItemToDisplayLog:(NSString *)item
 {
-    self.dispStack.text = [self.dispStack.text stringByAppendingFormat:@" %@", item];
+    self.displayLog.text = [self.displayLog.text stringByAppendingFormat:@" %@", item];
 }
 
 //
@@ -59,7 +60,7 @@
 
 - (IBAction)buttonPress:(UIButton *)sender 
 {
-    [self addDigitToDisplay:sender.currentTitle];
+    [self addDigitToDisplayCurrent:sender.currentTitle];
 }
 
 - (IBAction)operationPress:(UIButton *)sender 
@@ -73,17 +74,17 @@
     NSString *op = sender.currentTitle;
     double result = [self.stack operate:op];
     
-    [self addItemToDispStack:op];    
+    [self addItemToDisplayLog:op];    
 
     NSString * resultString = [NSString stringWithFormat:@"%g", result];
-    self.display.text = resultString;
+    self.displayCurrent.text = resultString;
 }
 
 
 - (IBAction)enterPress 
 {
-    [self.stack push:[self.display.text doubleValue]];
-    [self addItemToDispStack:self.display.text];
+    [self.stack push:[self.displayCurrent.text doubleValue]];
+    [self addItemToDisplayLog:self.displayCurrent.text];
     
     self.entering = NO;
 }
@@ -91,12 +92,12 @@
 - (IBAction)decimalPress:(UIButton *)sender 
 {
     if (self.entering && 
-        [self.display.text rangeOfString:@"."].location != NSNotFound ) {
+        [self.displayCurrent.text rangeOfString:@"."].location != NSNotFound ) {
         // already a decimal point, don't do anything
         return;
     }
     if (!self.entering) {
-        [self addDigitToDisplay:@"0"];
+        [self addDigitToDisplayCurrent:@"0"];
     }
     [self buttonPress:sender];
 }
@@ -104,7 +105,7 @@
 
 - (IBAction)clearPress:(UIButton *)sender 
 {
-    self.display.text = @"0";
+    self.displayCurrent.text = @"0";
     self.entering = NO;
 }
 
@@ -114,7 +115,7 @@
     [self clearPress:sender];
     
     [self.stack clear];
-    self.dispStack.text = @"";
+    self.displayLog.text = @"";
 }
 
 - (IBAction)piPress:(UIButton *)sender 
@@ -131,12 +132,12 @@
     }
     
     NSString * resultString = [NSString stringWithFormat:@"%g", result];
-    self.display.text = resultString;
+    self.displayCurrent.text = resultString;
 }
 
 
 - (void)viewDidUnload {
-    [self setDispStack:nil];
+    [self setDisplayLog:nil];
     [super viewDidUnload];
 }
 @end
