@@ -81,10 +81,10 @@ const double pi = 3.14159;
         double num = [self pop];
         result = num * num;
     } else if ([op isEqualToString:@"sin"]) {
-        float operandInRadians = [self pop] * (pi/180);
+        double operandInRadians = [self pop] * (pi/180);
         result = sin(operandInRadians);
     } else if ([op isEqualToString:@"cos"]) {
-        float operandInRadians = [self pop] * (pi/180);
+        double operandInRadians = [self pop] * (pi/180);
         result = cos(operandInRadians);
     } else {
     
