@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-const double pi;
-
 @interface rpnCalcStack : NSObject
 
-- (void)   push:(double)num;
-- (double) peek;
-- (double) pop;
-- (double) depth;
-- (void)   clear;
-- (double) operate:(NSString *)operate;
+- (void)        pushOperand:(double)num;
+- (double)      operate:(NSString *)operate;
+- (double)      depth;
+- (void)        clear;
+
+@property (readonly) id program;
+
++ (double)      runProgram:(id)program;
++ (NSString *)  describeProgram:(id)program;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "rpnCalcViewController.h"
 #import "rpnCalcStack.h"
-
+#import "rpnCalcConstants.h"
 
 @interface rpnCalcViewController ()
 @property (nonatomic) BOOL entering;
@@ -83,7 +83,7 @@
 
 - (IBAction)enterPress 
 {
-    [self.stack push:[self.displayCurrent.text doubleValue]];
+    [self.stack pushOperand:[self.displayCurrent.text doubleValue]];
     [self addItemToDisplayLog:self.displayCurrent.text];
     
     self.entering = NO;
@@ -124,10 +124,10 @@
     
     if (self.entering) {
         [self enterPress];
-        [self.stack push:pi];
+        [self.stack pushOperand:pi];
         result = [self.stack operate:@"*"];
     } else {
-        [self.stack push:pi];        
+        [self.stack pushOperand:pi];        
         result = pi;
     }
     

@@ -7,126 +7,130 @@
 //
 
 #import "rpnCalcStack.h"
-
-const double pi = 3.14159;
-
+#import "rpnCalcConstants.h"
 
 @interface rpnCalcStack()
-@property (nonatomic, strong) NSMutableArray *myStack;
+@property (nonatomic, strong) NSMutableArray *programStack;
 @end
-
 
 @implementation rpnCalcStack
 
-@synthesize myStack = _myStack;
-
-- (NSMutableArray *) myStack {
-    if (!_myStack) _myStack = [[NSMutableArray alloc] init];
-    return _myStack;
+@synthesize programStack = _programStack;
+- (NSMutableArray *) programStack 
+{
+    if (!_programStack) _programStack = [[NSMutableArray alloc] init];
+    return _programStack;
 }
 
-- (void) push:(double)num
+
+- (id) program
+{
+    return [self.programStack copy];
+}
+
+
++ (double) popOperand:(NSMutableArray *)stack
+{
+    double result = 0;
+   
+    id topOfStack = [stack lastObject];
+    if (topOfStack) [stack removeLastObject];
+
+    // OPERAND CASE
+    if ([topOfStack isKindOfClass:[NSNumber class]]) {
+        result = [topOfStack doubleValue];
+    } 
+        
+    // OPERATION CASE
+    else if ([topOfStack isKindOfClass:[NSString class]]) {
+        NSString * op = topOfStack;
+        
+        if ([@"+" isEqualToString:op]) {
+            result = [self popOperand:stack] + [self popOperand:stack];
+        } 
+        else if ([@"-" isEqualToString:op]) {
+            result = (-1 * [self popOperand:stack]) + [self popOperand:stack];
+        }
+        else if ([@"*" isEqualToString:op]) {
+            result = [self popOperand:stack] * [self popOperand:stack];
+        } 
+        else if ([@"/" isEqualToString:op]) {
+            double op1 = [self popOperand:stack];
+            double op2 = [self popOperand:stack];
+            if (op1 != 0) result = op2 / op1;    // to allow for div by zero case
+        } 
+        else if ([@"sqrt" isEqualToString:op]) {
+            result = sqrt([self popOperand:stack]);
+        } 
+        else if ([@"x**2" isEqualToString:op]) {
+            double num = [self popOperand:stack];
+            result = num * num;
+        } 
+        else if ([@"sin" isEqualToString:op]) {
+            double operandInRadians = [self popOperand:stack] * (pi/180);
+            result = sin(operandInRadians);
+        } 
+        else if ([@"cos" isEqualToString:op]) {
+            double operandInRadians = [self popOperand:stack] * (pi/180);
+            result = cos(operandInRadians);    
+        } 
+        else {
+            NSLog(@"stack: unrecognized operand: \"%@\"", op);
+        }
+    }
+    
+    return result;
+}
+
+
+
++ (double) runProgram:(id)program
+{
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    return [self popOperand:stack];
+
+}
+
+
+- (void) pushOperand:(double)num
 {
     NSNumber * numObj = [NSNumber numberWithDouble:num];
-    [self.myStack addObject:numObj];
+    [self.programStack addObject:numObj];
 }
 
-- (double) pop
-{
-    if ([self.myStack count] < 1) {
-        NSLog(@"stack: stack empty");
-        return 0;
-    }
-    double num = [self peek];
-    [self.myStack removeLastObject];
-    return num;
-}
 
-- (double) peek
+- (double) operate:(NSString *)op
 {
-    if ([self.myStack count] < 1) {
-        NSLog(@"stack: peeked at empty stack");
-        return 0;
-    }
-    return [[self.myStack lastObject] doubleValue];
+    [self.programStack addObject:op];
+    return [[self class] runProgram:self.program];
 }
 
 - (double) depth
 {
-    return [self.myStack count];
+    return [self.programStack count];
 }
 
 - (void) clear
 {
-    [self.myStack removeAllObjects];
+    [self.programStack removeAllObjects];
 }
     
-
-// TODO: replace this clunky error checking with exceptions.
-
-- (double) operate:(NSString *)op
-{
-    double result;
-        
-    // One Operand Ops 
-
-    if (self.myStack.count < 1) {
-        NSLog(@"stack: operation \"%@\" requires at least one items on the stack", op);
-        return 0;
-    }
-
-    if ([op isEqualToString:@"sqrt"]) {
-        result = sqrt([self pop]);
-    } else if ([op isEqualToString:@"x**2"]) {
-        double num = [self pop];
-        result = num * num;
-    } else if ([op isEqualToString:@"sin"]) {
-        double operandInRadians = [self pop] * (pi/180);
-        result = sin(operandInRadians);
-    } else if ([op isEqualToString:@"cos"]) {
-        double operandInRadians = [self pop] * (pi/180);
-        result = cos(operandInRadians);
-    } else {
-    
-        
-        // Two Operand Ops
-
-        if (self.myStack.count < 2) {
-            NSLog(@"stack: operation \"%@\" requires at least two items on the stack", op);
-            return 0;
-        }
-    
-        if ([op isEqualToString:@"+"]) {
-            result = [self pop] + [self pop];
-        } else if ([op isEqualToString:@"-"]) {
-            result = (-1 * [self pop]) + [self pop];
-        } else if ([op isEqualToString:@"/"]) {
-            double op1 = [self pop];
-            double op2 = [self pop];
-            if (op1 == 0) {
-                result = 0;   // handle div by zero case
-            } else {
-                result = op2 / op1;
-            }
-        } else if ([op isEqualToString:@"*"]) {
-            result = [self pop] * [self pop];
-        } else {
-            NSLog(@"stack: invalid operand: \"%@\"", op);
-            return 0;
-        }
-    }
-   
-    [self push:result];
-    return result;
-}
-
 
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"stack depth = %g\nstack = %@",
             [self depth], 
-            self.myStack];
-            }
+            self.programStack];
+}
+
+
++ (NSString *) describeProgram:(id)program
+{
+    // TODO
+}
 
 
 
