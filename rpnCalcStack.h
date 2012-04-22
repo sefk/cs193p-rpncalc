@@ -19,11 +19,14 @@
 @property (readonly) id program;
 
 + (NSDictionary *)  orderOfOperationsDict;
+
++ (double)          lookupVariable:(id)var
+                    usingVariableValues:(NSDictionary *)vars;
+
 + (double)          runProgram:(id)program;
 + (double)          runProgram:(id)program
                     usingVariableValues:(NSDictionary *)vars;
-+ (double)          lookupVariable:(id)var
-                    usingVariableValues:(NSDictionary *)vars;
+
 + (NSString *)      describeProgram:(id)program;
 + (NSSet *)         variablesUsedInProgram:(id)program;
 
