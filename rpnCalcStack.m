@@ -292,31 +292,26 @@
 
 + (NSString *) describeProgram:(id)program
 {
-    NSMutableArray *stack;
-    if ([program isKindOfClass:[NSArray class]]) {
-        stack = [program mutableCopy];
-    }
-    return [self describeOperand:stack];
-}
-
-+ (NSString *) describeOperand:(NSMutableArray *)stack
-{
     NSString * result = [NSString stringWithString:@""];
 
-    while ([stack count]) {
-        NSString * newTerm = [[self class]describeOperand:stack inTheContextOfOperatorLevel:0];
-        if ([result length]) {
-            newTerm = [newTerm stringByAppendingString:@", "];
+    NSMutableArray *stack;    
+
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+
+        while ([stack count]) {
+            NSString * newTerm = [[self class]describeOperand:stack inTheContextOfOperatorLevel:0];
+            if ([result length]) {
+                newTerm = [newTerm stringByAppendingString:@", "];
+            }
+            result = [newTerm stringByAppendingString:result];
         }
-        result = [newTerm stringByAppendingString:result];
     }
-    
     return result;
 }
 
     
-+ (NSString *) describeOperand:(NSMutableArray *)stack
-               inTheContextOfOperatorLevel:(int)predenceOfCaller
++ (NSString *) describeOperand:(NSMutableArray *)stack inTheContextOfOperatorLevel:(int)predenceOfCaller
 {
     NSString * result;
     
