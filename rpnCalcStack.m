@@ -39,10 +39,10 @@
                                   _numTwo,    @"-",
                                   _numTwo,    @"/",
                                   _numTwo,    @"*",    
+                                  _numOne,    @"x^2",
                                   _numOne,    @"sqrt",
                                   _numOne,    @"sin",
                                   _numOne,    @"cos",
-                                  _numOne,    @"sqr",
                                   nil];
     }
     
@@ -155,7 +155,7 @@
         else if ([@"sqrt" isEqualToString:op]) {
             result = sqrt([self popAndEvaluate:stack usingVariableValues:vars]);
         } 
-        else if ([@"sqr" isEqualToString:op]) {
+        else if ([@"x^2" isEqualToString:op]) {
             double num = [self popAndEvaluate:stack usingVariableValues:vars];
             result = num * num;
         } 
@@ -279,7 +279,11 @@
         switch (expectedOperands) {
             case 1: // unary op
                 op1 = [[self class] describeOperand:stack];
-                result = [NSString stringWithFormat:@"%@(%@)", operator, op1];
+                if ([operator isEqualToString:@"x^2"]) {
+                    result = [NSString stringWithFormat:@"(%@)^2", op1];
+                } else {
+                    result = [NSString stringWithFormat:@"%@(%@)", operator, op1];
+                }
                 break;
             case 2: // binary op
                 op2 = [[self class] describeOperand:stack];

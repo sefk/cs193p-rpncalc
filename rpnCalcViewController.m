@@ -64,10 +64,11 @@
 {
     // push on to stack whether or not they are entering a number.  This enables the
     // behavior "5 <enter> <plus>" = 10
-    [self enterPress];
-    self.entering = NO;
+    if (self.entering) {
+        [self enterPress];
+        self.entering = NO;
+    }
 
-    
     NSString *op = sender.currentTitle;
     double result = [self.stack operate:op];
                   
