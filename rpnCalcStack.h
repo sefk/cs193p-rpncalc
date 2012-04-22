@@ -13,7 +13,7 @@
 - (void)        pushOperand:(double)num;
 - (void)        pushVariable:(NSString *)var;
 - (double)      operate:(NSString *)operate;
-- (double)      depth;
+- (int)         depth;
 - (void)        clear;
 
 @property (readonly) id program;
