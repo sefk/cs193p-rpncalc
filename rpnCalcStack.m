@@ -21,6 +21,8 @@
 
 // TODO: move all this operator junk into its own file (and class) and provide better abstraction
 
+// TODO: treat PI as a symbol instead of just a real value
+
 
 //
 // GLOBAL HELPERS
