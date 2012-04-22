@@ -262,20 +262,22 @@
     NSString * operator = (NSString *)topOfStack;
     
     if ([topOfStack isKindOfClass:[NSString class]]) {
-        switch ([[self class] numberOfOperandsThisOperationUses:operator]) {
+        NSString * op1;
+        NSString * op2;
+        int expectedOperands = [[self class] numberOfOperandsThisOperationUses:operator];
+        switch (expectedOperands) {
             case 1: // unary op
-                result = [NSString stringWithFormat:@"%@(%@)",
-                         operator,
-                         [self describeOperand:stack],
-                         nil];
-                         break;
+                op1 = [[self class] describeOperand:stack];
+                result = [NSString stringWithFormat:@"%@(%@)", operator, op1];
+                break;
             case 2: // binary op
-                result = [NSString stringWithFormat:@"(%@%@%@)",
-                          [self describeOperand:stack],
-                          operator,
-                          [self describeOperand:stack],
-                          nil];
-                 
+                op2 = [[self class] describeOperand:stack];
+                op1 = [[self class] describeOperand:stack];
+                result = [NSString stringWithFormat:@"(%@%@%@)", op1, operator, op2];
+                break;
+            default:
+                NSLog(@"stack: for operator \"%@\", didn't expect %d operands", 
+                      operator, expectedOperands);
         }
         
     }
