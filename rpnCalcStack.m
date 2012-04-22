@@ -86,7 +86,6 @@
 + (BOOL) isOperator:(id)thingy
 {
     // first, an operator must be a string.  
-    
     if (! [thingy isKindOfClass:[NSString class]]) return NO;
     
     // all operators are a key in the operationsDict.  Look up to see if it's there
@@ -110,7 +109,6 @@
 }
 
 
-
 + (double) popOperand:(NSMutableArray *)stack
            usingVariableValues:(NSDictionary *)vars
 {
@@ -119,32 +117,21 @@
     id topOfStack = [stack lastObject];
     if (topOfStack) [stack removeLastObject];
 
-    // OPERAND CASE
-    if (! [[self class] isOperator:topOfStack]) {
-        
-        // for operands: numbers are values, strings are variables
-        if ([topOfStack isKindOfClass:[NSNumber class]]) {
-            return [topOfStack doubleValue];
-        } else {
-            return [[self class] lookupVariable:topOfStack usingVariableValues:vars];
-        }
-    } 
-        
-    // OPERATION CASE
-    else {
+    // OPERATIONS
+    if ([[self class] isOperator:topOfStack]) {
         NSString * op = topOfStack;
         
         if ([@"+" isEqualToString:op]) {
             result = [self popOperand:stack usingVariableValues:vars] + 
-                     [self popOperand:stack usingVariableValues:vars];
+            [self popOperand:stack usingVariableValues:vars];
         } 
         else if ([@"-" isEqualToString:op]) {
             result = ([self popOperand:stack usingVariableValues:vars]) * (-1) + 
-                      [self popOperand:stack usingVariableValues:vars];
+            [self popOperand:stack usingVariableValues:vars];
         }
         else if ([@"*" isEqualToString:op]) {
             result = [self popOperand:stack usingVariableValues:vars] *
-                        [self popOperand:stack usingVariableValues:vars];
+            [self popOperand:stack usingVariableValues:vars];
         } 
         else if ([@"/" isEqualToString:op]) {
             double op1 = [self popOperand:stack usingVariableValues:vars];
@@ -159,24 +146,33 @@
             result = num * num;
         } 
         else if ([@"sin" isEqualToString:op]) {
-            double operandInRadians = [self popOperand:stack usingVariableValues:vars] * 
-                    (pi/180);
+            double operandInRadians = 
+            [self popOperand:stack usingVariableValues:vars] * (pi/180);
             result = sin(operandInRadians);
         } 
         else if ([@"cos" isEqualToString:op]) {
-            double operandInRadians = [self popOperand:stack usingVariableValues:vars] * 
-                    (pi/180);
+            double operandInRadians = 
+            [self popOperand:stack usingVariableValues:vars] * (pi/180);
             result = cos(operandInRadians);    
         } 
         else {
-            NSLog(@"stack: undefined operand \"%@\" somehow made it on the stack",
-                  op);
+            NSLog(@"stack: undefined operand \"%@\" somehow made it on the stack", op);
+        }
+    } 
+        
+    // OPERANDS
+    else {
+        
+        // for operands: numbers are values, strings are variables
+        if ([topOfStack isKindOfClass:[NSNumber class]]) {
+            return [topOfStack doubleValue];
+        } else {
+            return [[self class] lookupVariable:topOfStack usingVariableValues:vars];
         }
     }
     
     return result;
 }
-
 
 
 + (double) runProgram:(id)program
@@ -199,6 +195,7 @@
     }
     return [self popOperand:stack usingVariableValues:vars];    
 }
+
 
 - (void) pushOperand:(double)num
 {
@@ -239,7 +236,6 @@
             [self depth], 
             self.programStack];
 }
-
 
 + (NSString *) describeProgram:(id)program
 {
