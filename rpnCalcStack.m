@@ -19,6 +19,9 @@
 @implementation rpnCalcStack
 
 
+// TODO: move all this operator junk into its own file (and class) and provide better abstraction
+
+
 //
 // GLOBAL HELPERS
 //
