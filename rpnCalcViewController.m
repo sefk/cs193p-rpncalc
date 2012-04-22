@@ -61,16 +61,13 @@
 }
 
 - (IBAction)operationPress:(UIButton *)sender 
-{
-    // push on to stack whether or not they are entering a number.  This enables the
-    // behavior "5 <enter> <plus>" = 10
-    if (self.entering) {
+{    if (self.entering) {
         [self enterPress];
         self.entering = NO;
     }
 
     NSString *op = sender.currentTitle;
-    double result = [self.stack operate:op];
+    double result = [self.stack pushOperatorAndEvaluate:op];
                   
     [self refreshDisplayLog];
     
@@ -125,7 +122,7 @@
     if (self.entering) {
         [self enterPress];
         [self.stack pushOperand:pi];
-        result = [self.stack operate:@"*"];
+        result = [self.stack pushOperatorAndEvaluate:@"*"];
     } else {
         [self.stack pushOperand:pi];        
         result = pi;

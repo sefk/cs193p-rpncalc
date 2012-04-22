@@ -12,7 +12,7 @@
 
 - (void)        pushOperand:(double)num;
 - (void)        pushVariable:(NSString *)var;
-- (double)      operate:(NSString *)operate;
+- (double)      pushOperatorAndEvaluate:(NSString *)operate;
 - (int)         depth;
 - (void)        clear;
 
