@@ -83,13 +83,13 @@
 }
 
 
-+ (BOOL) isOperator:(id)thingy
++ (BOOL) isOperator:(id)operatorOrOperand
 {
     // first, an operator must be a string.  
-    if (! [thingy isKindOfClass:[NSString class]]) return NO;
+    if (! [operatorOrOperand isKindOfClass:[NSString class]]) return NO;
     
     // all operators are a key in the operationsDict.  Look up to see if it's there
-    if (! [[[self class] orderOfOperationsDict] objectForKey:thingy]) return NO;
+    if (! [[[self class] orderOfOperationsDict] objectForKey:operatorOrOperand]) return NO;
     
     // must have been found in the operationsDict.  Yay.
     return YES;
@@ -262,8 +262,7 @@
     NSString * operator = (NSString *)topOfStack;
     
     if ([topOfStack isKindOfClass:[NSString class]]) {
-        NSString * op1;
-        NSString * op2;
+        NSString * op1, * op2;
         int expectedOperands = [[self class] numberOfOperandsThisOperationUses:operator];
         switch (expectedOperands) {
             case 1: // unary op
