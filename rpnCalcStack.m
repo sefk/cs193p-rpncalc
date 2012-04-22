@@ -69,6 +69,7 @@
 // EXECUTION
 //
 
+// Accessor for the current program.  Lazy instantiation.
 @synthesize programStack = _programStack;
 - (NSMutableArray *) programStack 
 {
@@ -77,12 +78,15 @@
 }
 
 
+// Accessor for current program.  Just return a copy of what we're working on so far.
 - (id) program
 {
     return [self.programStack copy];
 }
 
 
+// TRUE if the object is an operator (plus, minus, sin)
+// FALSE if an operand (variable, number)
 + (BOOL) isOperator:(id)operatorOrOperand
 {
     // first, an operator must be a string.  
@@ -96,6 +100,8 @@
 }
 
 
+// Return the value of the variable in the list of variables.  If not found, logs an error and returns 0.
+// TODO: should replace variable-not-found with raising an exception
 + (double) lookupVariable:(id)var 
            usingVariableValues:(NSDictionary *)vars
 {
@@ -109,15 +115,23 @@
 }
 
 
+// For the program stack, take off the top item and evaluate. 
+// Operand:  return its value, either number itself or value of its variable
+// Operator: pop what it needs off the stack, evaluate the operator, and return that
 + (double) popAndEvaluate:(NSMutableArray *)stack
            usingVariableValues:(NSDictionary *)vars
 {
     double result = 0;
    
     id topOfStack = [stack lastObject];
-    if (topOfStack) [stack removeLastObject];
+    if (topOfStack) {
+        [stack removeLastObject];
+    } else {
+        NSLog(@"stack: nothing found on stack to evaluate");
+        return result;
+    }
 
-    // OPERATIONS
+    // OPERATOR CASE
     if ([[self class] isOperator:topOfStack]) {
         NSString * op = topOfStack;
         
@@ -160,14 +174,13 @@
         }
     } 
         
-    // OPERANDS
+    // OPERAND CASE
     else {
-        
-        // for operands: numbers are values, strings are variables
+        // for operands, numbers are values, strings are variables
         if ([topOfStack isKindOfClass:[NSNumber class]]) {
-            return [topOfStack doubleValue];
+            result = [topOfStack doubleValue];
         } else {
-            return [[self class] lookupVariable:topOfStack usingVariableValues:vars];
+            result = [[self class] lookupVariable:topOfStack usingVariableValues:vars];
         }
     }
     
@@ -207,7 +220,6 @@
 {
     [self.programStack addObject:var];
 }
-
 
 - (double) operate:(NSString *)op
 {
