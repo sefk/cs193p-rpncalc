@@ -11,13 +11,20 @@
 @interface rpnCalcStack : NSObject
 
 - (void)        pushOperand:(double)num;
+- (void)        pushVariable:(NSString *)var;
 - (double)      operate:(NSString *)operate;
 - (double)      depth;
 - (void)        clear;
 
 @property (readonly) id program;
 
-+ (double)      runProgram:(id)program;
-+ (NSString *)  describeProgram:(id)program;
++ (NSDictionary *)  orderOfOperationsDict;
++ (double)          runProgram:(id)program;
++ (double)          runProgram:(id)program
+                    usingVariableValues:(NSDictionary *)vars;
++ (double)          lookupVariable:(id)var
+                    usingVariableValues:(NSDictionary *)vars;
++ (NSString *)      describeProgram:(id)program;
++ (NSSet *)         variablesUsedInProgram:(id)program;
 
 @end
