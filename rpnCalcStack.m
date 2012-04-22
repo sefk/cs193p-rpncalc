@@ -109,7 +109,7 @@
 }
 
 
-+ (double) popOperand:(NSMutableArray *)stack
++ (double) popAndEvaluate:(NSMutableArray *)stack
            usingVariableValues:(NSDictionary *)vars
 {
     double result = 0;
@@ -122,37 +122,37 @@
         NSString * op = topOfStack;
         
         if ([@"+" isEqualToString:op]) {
-            result = [self popOperand:stack usingVariableValues:vars] + 
-            [self popOperand:stack usingVariableValues:vars];
+            result = [self popAndEvaluate:stack usingVariableValues:vars] + 
+            [self popAndEvaluate:stack usingVariableValues:vars];
         } 
         else if ([@"-" isEqualToString:op]) {
-            result = ([self popOperand:stack usingVariableValues:vars]) * (-1) + 
-            [self popOperand:stack usingVariableValues:vars];
+            result = ([self popAndEvaluate:stack usingVariableValues:vars]) * (-1) + 
+            [self popAndEvaluate:stack usingVariableValues:vars];
         }
         else if ([@"*" isEqualToString:op]) {
-            result = [self popOperand:stack usingVariableValues:vars] *
-            [self popOperand:stack usingVariableValues:vars];
+            result = [self popAndEvaluate:stack usingVariableValues:vars] *
+            [self popAndEvaluate:stack usingVariableValues:vars];
         } 
         else if ([@"/" isEqualToString:op]) {
-            double op1 = [self popOperand:stack usingVariableValues:vars];
-            double op2 = [self popOperand:stack usingVariableValues:vars];
+            double op1 = [self popAndEvaluate:stack usingVariableValues:vars];
+            double op2 = [self popAndEvaluate:stack usingVariableValues:vars];
             if (op1 != 0) result = op2 / op1;    // to allow for div by zero case
         } 
         else if ([@"sqrt" isEqualToString:op]) {
-            result = sqrt([self popOperand:stack usingVariableValues:vars]);
+            result = sqrt([self popAndEvaluate:stack usingVariableValues:vars]);
         } 
         else if ([@"sqr" isEqualToString:op]) {
-            double num = [self popOperand:stack usingVariableValues:vars];
+            double num = [self popAndEvaluate:stack usingVariableValues:vars];
             result = num * num;
         } 
         else if ([@"sin" isEqualToString:op]) {
             double operandInRadians = 
-            [self popOperand:stack usingVariableValues:vars] * (pi/180);
+            [self popAndEvaluate:stack usingVariableValues:vars] * (pi/180);
             result = sin(operandInRadians);
         } 
         else if ([@"cos" isEqualToString:op]) {
             double operandInRadians = 
-            [self popOperand:stack usingVariableValues:vars] * (pi/180);
+            [self popAndEvaluate:stack usingVariableValues:vars] * (pi/180);
             result = cos(operandInRadians);    
         } 
         else {
@@ -181,7 +181,7 @@
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    return [self popOperand:stack usingVariableValues:nil];
+    return [self popAndEvaluate:stack usingVariableValues:nil];
 
 }
 
@@ -193,7 +193,7 @@
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    return [self popOperand:stack usingVariableValues:vars];    
+    return [self popAndEvaluate:stack usingVariableValues:vars];    
 }
 
 
