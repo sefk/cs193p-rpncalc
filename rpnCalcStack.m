@@ -74,7 +74,9 @@
     static NSNumber * _numTwo;
     if (!_numTwo) _numTwo = [NSNumber numberWithInt:2];
     static NSNumber * _numThree;
-    if (!_numTwo) _numTwo = [NSNumber numberWithInt:3];
+    if (!_numThree) _numThree = [NSNumber numberWithInt:3];
+    static NSNumber * _numFour;
+    if (!_numFour) _numFour = [NSNumber numberWithInt:4];
     
     static NSDictionary * _operatorPrecedenceDict;
     
@@ -84,11 +86,11 @@
                                   _numOne,    @"+",    
                                   _numOne,    @"-",
                                   _numTwo,    @"/",
-                                  _numTwo,    @"*",    
+                                  _numTwo,    @"*",
                                   _numThree,  @"x^2",
-                                  _numThree,  @"sqrt",
-                                  _numThree,  @"sin",
-                                  _numThree,  @"cos",
+                                  _numFour,   @"sqrt",
+                                  _numFour,   @"sin",
+                                  _numFour,   @"cos",
                                   nil];
     }
     
@@ -336,26 +338,27 @@
             case 1: // unary op
                 op1 = [[self class] describeOperand:stack inTheContextOfOperatorLevel:myPrecedenceLevel];
                 if ([operator isEqualToString:@"x^2"]) {
-                    result = [NSString stringWithFormat:@"(%@)^2", op1];
+                    result = [NSString stringWithFormat:@"%@^2", op1];                       
                 } else {
-                    result = [NSString stringWithFormat:@"%@(%@)", operator, op1];
+                    result = [NSString stringWithFormat:@"%@%@", operator, op1];
                 }
                 break;
             case 2: // binary op
                 op2 = [[self class] describeOperand:stack inTheContextOfOperatorLevel:myPrecedenceLevel];
                 op1 = [[self class] describeOperand:stack inTheContextOfOperatorLevel:myPrecedenceLevel];
-                if (myPrecedenceLevel < predenceOfCaller) {
-                    result = [NSString stringWithFormat:@"(%@ %@ %@)", op1, operator, op2];
-                } else {
-                    result = [NSString stringWithFormat:@"%@ %@ %@", op1, operator, op2];
-                }
+                result = [NSString stringWithFormat:@"%@ %@ %@", op1, operator, op2];
 
                 break;
             default:
-                NSLog(@"stack: for operator \"%@\", didn't expect %d operands", 
-                      operator, expectedOperands);
+                NSLog(@"stack: for operator \"%@\", didn't expect %d operands", operator, expectedOperands);
         }
         
+        if (myPrecedenceLevel < predenceOfCaller) {
+            NSString * newStr = [NSString stringWithString:@""];
+            newStr = [NSString stringWithFormat:@"(%@)", result];
+            result = [newStr copy];
+        }
+            
     }
         
     // OPERAND CASE
@@ -368,6 +371,7 @@
             result = [topOfStack stringValue];
         }        
     }
+    
     
     return result;
 }
