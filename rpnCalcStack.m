@@ -196,7 +196,7 @@
         else if ([@"/" isEqualToString:op]) {
             double op1 = [self popAndEvaluate:stack usingVariableValues:vars];
             double op2 = [self popAndEvaluate:stack usingVariableValues:vars];
-            if (op1 != 0) result = op2 / op1;    // to allow for div by zero case
+            if (op1 != 0) result = op2 / op1;    // protect against div by zero case
         } 
         else if ([@"sqrt" isEqualToString:op]) {
             result = sqrt([self popAndEvaluate:stack usingVariableValues:vars]);
@@ -267,7 +267,7 @@
     [self.programStack addObject:var];
 }
 
-- (double) operate:(NSString *)op
+- (double) pushOperatorAndEvaluate:(NSString *)op
 {
     [self.programStack addObject:op];
     return [[self class] runProgram:self.program];
