@@ -185,6 +185,7 @@
 - (void) clear
 {
     [self.programStack removeAllObjects];
+    NSLog(@"--- ALL CLEAR --- ");
 }
     
 
