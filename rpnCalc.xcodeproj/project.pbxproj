@@ -17,6 +17,7 @@
 		86981F1E1538B9E40055EC7D /* rpnCalcAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86981F1D1538B9E40055EC7D /* rpnCalcAppDelegate.m */; };
 		86981F211538B9E40055EC7D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86981F1F1538B9E40055EC7D /* MainStoryboard.storyboard */; };
 		86981F241538B9E40055EC7D /* rpnCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86981F231538B9E40055EC7D /* rpnCalcViewController.m */; };
+		86E56F0315450D9D00380480 /* rpnCalcOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E56F0215450D9D00380480 /* rpnCalcOperator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		86981F201538B9E40055EC7D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		86981F221538B9E40055EC7D /* rpnCalcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rpnCalcViewController.h; sourceTree = "<group>"; };
 		86981F231538B9E40055EC7D /* rpnCalcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rpnCalcViewController.m; sourceTree = "<group>"; };
+		86E56F0115450D9D00380480 /* rpnCalcOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcOperator.h; sourceTree = "<group>"; };
+		86E56F0215450D9D00380480 /* rpnCalcOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcOperator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 			children = (
 				8683C6771538C5B2004DE0A0 /* rpnCalcStack.h */,
 				8683C6781538C5B2004DE0A0 /* rpnCalcStack.m */,
+				86E56F0115450D9D00380480 /* rpnCalcOperator.h */,
+				86E56F0215450D9D00380480 /* rpnCalcOperator.m */,
 				86981F1C1538B9E40055EC7D /* rpnCalcAppDelegate.h */,
 				86981F1D1538B9E40055EC7D /* rpnCalcAppDelegate.m */,
 				86981F1F1538B9E40055EC7D /* MainStoryboard.storyboard */,
@@ -176,6 +181,7 @@
 				86981F241538B9E40055EC7D /* rpnCalcViewController.m in Sources */,
 				8683C6791538C5B2004DE0A0 /* rpnCalcStack.m in Sources */,
 				8684B9CF153F6AD400BECEBD /* rpnCalcConstants.m in Sources */,
+				86E56F0315450D9D00380480 /* rpnCalcOperator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
