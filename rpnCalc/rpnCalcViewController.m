@@ -36,7 +36,7 @@
 // HELPER FUNCTIONS (PRIVATE)
 //
 
-- (void)addDigitToDisplayCurrent:(NSString *)digit
+- (void) addDigitToDisplayCurrent:(NSString *)digit
 {
     if (self.entering) {
         self.displayCurrent.text = [self.displayCurrent.text stringByAppendingString:digit];
@@ -45,10 +45,18 @@
     }    
 }
 
-- (void)refreshDisplayLog
+- (void) refreshDisplayLog
 {
     self.displayLog.text = [[self.stack class] describeProgram:self.stack.program];
 }
+
+- (void) pushCurrentOntoStack
+{
+    [self.stack pushOperand:[self.displayCurrent.text doubleValue]];
+}
+
+
+
 
 //
 // PUBLIC FUNCTIONS
@@ -61,8 +69,9 @@
 }
 
 - (IBAction)operationPress:(UIButton *)sender 
-{    if (self.entering) {
-        [self.stack pushOperand:[self.displayCurrent.text doubleValue]];
+{    
+    if (self.entering) {
+        [self pushCurrentOntoStack];
         self.entering = NO;
     }
 
@@ -78,10 +87,10 @@
 
 - (IBAction)enterPress 
 {
-    [self.stack pushOperand:[self.displayCurrent.text doubleValue]];
-    [self refreshDisplayLog];
-    
     self.entering = NO;
+    [self pushCurrentOntoStack];
+    
+    [self refreshDisplayLog];    
 }
 
 
@@ -120,7 +129,8 @@
     double result;
     
     if (self.entering) {
-        [self enterPress];
+        self.entering = NO;
+        [self pushCurrentOntoStack];
         [self.stack pushOperand:pi];
         result = [self.stack pushOperatorAndEvaluate:@"*"];
     } else {
@@ -135,15 +145,22 @@
 
 - (IBAction)varPress:(UIButton *)sender 
 {
+    double result;
+    
     NSString * var = sender.currentTitle;
 
     if (self.entering) {
-        [self enterPress];
+        self.entering = NO;
+        [self pushCurrentOntoStack];
         [self.stack pushVariable:var];
+        result = [self.stack pushOperatorAndEvaluate:@"*"];
+
+        NSString * resultString = [NSString stringWithFormat:@"%g", result];
+        self.displayCurrent.text = resultString;
     } else {
         [self.stack pushVariable:var];
+        self.displayCurrent.text = var;
     }
-    self.displayCurrent.text = var;
 }
 
 
