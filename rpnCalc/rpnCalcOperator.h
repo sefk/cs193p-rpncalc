@@ -32,11 +32,11 @@
 // When printing we need to know what the parent operator is
 // to decide whether we need parenthesis or not.
 
-- (NSString *) formatOperand:(NSString *)operand
+- (NSString *) formatOperand:(NSString *)operandStr
         withinParentOperator:(rpnCalcOperator *)parent;
 
-- (NSString *) formatOperand:(NSString *)operand1
-                 withOperand:(NSString *)operand2
+- (NSString *) formatOperand:(NSString *)operand1Str
+                 withOperand:(NSString *)operand2Str
          withinParentOperator:(rpnCalcOperator *)parent;
 
 // CLASS METHODS

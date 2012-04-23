@@ -83,19 +83,18 @@
     
     // Higher Functions (sin, cos)
     
+    else if ([opname isEqualToString:@"x^2"]) {
+        self.needsOperands = 1;         
+        self.precedence = 3;
+        self.executionSelectorStr = @"square:";
+        self.formatSelectorStr = @"formatSquare:";
+    }
     else if ([opname isEqualToString:@"sqrt"]) {
         self.needsOperands = 1;         
         self.precedence = 3;
         self.forcesParentheses = YES;
         self.executionSelectorStr = @"squareroot:";
         self.formatSelectorStr = @"formatSquareroot:";
-    }
-    else if ([opname isEqualToString:@"x^2"]) {
-        self.needsOperands = 1;         
-        self.precedence = 3;
-        self.forcesParentheses = YES;
-        self.executionSelectorStr = @"square:";
-        self.formatSelectorStr = @"formatSquare:";
     }
     else if ([opname isEqualToString:@"sin"]) {
         self.needsOperands = 1;         
@@ -147,16 +146,21 @@
 // Formatting
 //
 
-- (NSString *) formatOperand:(NSString *)operand
+- (NSString *) formatOperand:(NSString *)operandStr
         withinParentOperator:(rpnCalcOperator *)parent
 {
     NSString * resultStr;
     
+    if (self.forcesParentheses) {
+        NSString * operandStrWithParens = [NSString stringWithFormat:@"(%@)", operandStr];
+        operandStr = operandStrWithParens;
+    }
+    
     SEL formatSelector = NSSelectorFromString(self.formatSelectorStr);
     resultStr = [self performSelector:formatSelector
-                           withObject:operand];
-    
-    if (parent.forcesParentheses || parent.precedence > self.precedence) {
+                           withObject:operandStr];
+
+    if (parent.precedence > self.precedence) {
         NSString * resultStrWithParens = [NSString stringWithFormat:@"(%@)", resultStr];
         resultStr = resultStrWithParens;
     }
@@ -171,12 +175,15 @@
 {
     NSString * resultStr;
     
+    // TODO: if there was a binary operation that forced parentheses, then we would have to handle
+    // that case, but not sure what that would format like
+    
     SEL formatSelector = NSSelectorFromString(self.formatSelectorStr);
     resultStr = [self performSelector:formatSelector
                            withObject:operand1
                            withObject:operand2];
     
-    if (parent.forcesParentheses || parent.precedence > self.precedence) {
+    if (parent.precedence > self.precedence) {
         NSString * resultStrWithParens = [NSString stringWithFormat:@"(%@)", resultStr];
         resultStr = resultStrWithParens;
     }
