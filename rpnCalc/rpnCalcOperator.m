@@ -16,10 +16,10 @@
 
 @synthesize name =                 _name;
 @synthesize needsOperands =        _needsOperands;
-@synthesize forcesParentheses =    _forcesParentheses;   // default NO
 @synthesize precedence =           _precedence;
 @synthesize executionSelectorStr = _executionSelectorStr;
 @synthesize formatSelectorStr =    _formatSelectorStr;
+@synthesize forcesParentheses =    _forcesParentheses;   // default NO
 
 - (int) needsOperands
 {
@@ -92,23 +92,23 @@
     else if ([opname isEqualToString:@"sqrt"]) {
         self.needsOperands = 1;         
         self.precedence = 3;
-        self.forcesParentheses = YES;
         self.executionSelectorStr = @"squareroot:";
         self.formatSelectorStr = @"formatSquareroot:";
+        self.forcesParentheses = YES;
     }
     else if ([opname isEqualToString:@"sin"]) {
         self.needsOperands = 1;         
         self.precedence = 3;
-        self.forcesParentheses = YES;
         self.executionSelectorStr = @"sine:";
         self.formatSelectorStr = @"formatSine:";
+        self.forcesParentheses = YES;
     }
     else if ([opname isEqualToString:@"cos"]) {
         self.needsOperands = 1;         
         self.precedence = 3;
-        self.forcesParentheses = YES;
         self.executionSelectorStr = @"cosine:";
         self.formatSelectorStr = @"formatCosine:";
+        self.forcesParentheses = YES;
     }
     
     return self;

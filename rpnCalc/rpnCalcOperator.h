@@ -17,10 +17,10 @@
 
 @property (nonatomic, strong) NSString *  name;
 @property (nonatomic)         int         needsOperands;
-@property (nonatomic)         BOOL        forcesParentheses;
 @property (nonatomic)         int         precedence;
 @property (nonatomic)         NSString *  executionSelectorStr;
 @property (nonatomic)         NSString *  formatSelectorStr;
+@property (nonatomic)         BOOL        forcesParentheses;
 
 // WORKERS
 
