@@ -151,7 +151,7 @@
 {
     NSString * resultStr;
     
-    if (self.forcesParentheses) {
+    if (self.forcesParentheses && [operandStr characterAtIndex:0] != '(') {
         NSString * operandStrWithParens = [NSString stringWithFormat:@"(%@)", operandStr];
         operandStr = operandStrWithParens;
     }
