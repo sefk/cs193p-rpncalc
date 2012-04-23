@@ -8,6 +8,7 @@
 
 #import "rpnCalcStack.h"
 #import "rpnCalcConstants.h"
+#import "rpnCalcOperator.h"
 
 @interface rpnCalcStack()
 @property (nonatomic, strong) NSMutableArray *programStack;
@@ -22,95 +23,6 @@
 // TODO: move all this operator junk into its own file (and class) and provide better abstraction
 
 // TODO: treat PI as a symbol instead of just a real value
-
-
-//
-// GLOBAL HELPERS
-//
-
-+ (NSDictionary *) orderOfOperationsDict
-{
-    static NSNumber * _numOne;
-    if (!_numOne) _numOne = [NSNumber numberWithInt:1];
-    static NSNumber * _numTwo;
-    if (!_numTwo) _numTwo = [NSNumber numberWithInt:2];
-    
-    static NSDictionary * _orderOfOperationsDict;
-    
-    if (!_orderOfOperationsDict) {
-        _orderOfOperationsDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  // VALUE    // KEY
-                                  _numTwo,    @"+",    
-                                  _numTwo,    @"-",
-                                  _numTwo,    @"/",
-                                  _numTwo,    @"*",    
-                                  _numOne,    @"x^2",
-                                  _numOne,    @"sqrt",
-                                  _numOne,    @"sin",
-                                  _numOne,    @"cos",
-                                  nil];
-    }
-    
-    return _orderOfOperationsDict;
-}
-
-+ (int) numberOfOperandsThisOperationUses:(NSString *)op
-{
-    int result = 0;
-    NSNumber * resultNum;
-    
-    NSDictionary * dict = [self orderOfOperationsDict];
-    resultNum = [dict objectForKey:op];
-    if (resultNum) result = [resultNum intValue];
-    
-    return result;
-}
-
-
-+ (NSDictionary *) operatorPrecedenceDict
-{
-    static NSNumber * _numOne;
-    if (!_numOne) _numOne = [NSNumber numberWithInt:1];
-    static NSNumber * _numTwo;
-    if (!_numTwo) _numTwo = [NSNumber numberWithInt:2];
-    static NSNumber * _numThree;
-    if (!_numThree) _numThree = [NSNumber numberWithInt:3];
-    static NSNumber * _numFour;
-    if (!_numFour) _numFour = [NSNumber numberWithInt:4];
-    
-    static NSDictionary * _operatorPrecedenceDict;
-    
-    if (!_operatorPrecedenceDict) {
-        _operatorPrecedenceDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  // VALUE    // KEY
-                                  _numOne,    @"+",    
-                                  _numOne,    @"-",
-                                  _numTwo,    @"/",
-                                  _numTwo,    @"*",
-                                  _numThree,  @"x^2",
-                                  _numFour,   @"sqrt",
-                                  _numFour,   @"sin",
-                                  _numFour,   @"cos",
-                                  nil];
-    }
-    
-    return _operatorPrecedenceDict;    
-}
-
-
-+ (int) precedenceOfOperator:(NSString *)op
-{
-    int result = 0;
-    NSNumber * resultNum;
-    
-    NSDictionary * dict = [self operatorPrecedenceDict];
-    resultNum = [dict objectForKey:op];
-    if (resultNum) result = [resultNum intValue];
-    
-    return result;
-}
-
-
 
 
 //
@@ -141,16 +53,22 @@
     if (! [operatorOrOperand isKindOfClass:[NSString class]]) return NO;
     
     // all operators are a key in the operationsDict.  Look up to see if it's there
-    if (! [[[self class] orderOfOperationsDict] objectForKey:operatorOrOperand]) return NO;
+    if (! [[[rpnCalcOperator class] setWithAllOperatorStrings] containsObject:operatorOrOperand]) return NO;
     
     // must have been found in the operationsDict.  Yay.
     return YES;
 }
 
 
++ (BOOL) isVariable:(id)numOrVar
+{
+    return [numOrVar isKindOfClass:[NSString class]];
+}
+
+
 // Return the value of the variable in the list of variables.  If not found, logs an error and returns 0.
 // TODO: should replace variable-not-found with raising an exception
-+ (double) lookupVariable:(id)var 
++ (NSNumber *) lookupVariable:(id)var 
            usingVariableValues:(NSDictionary *)vars
 {
     NSNumber * numObj;
@@ -159,17 +77,17 @@
         NSLog(@"stack: assuming \"%@\" is a variable, but not found\n", var);
         // result already 0, and that's OK for the var not found case
     }
-    return [numObj doubleValue];
+    return numObj;
 }
 
 
 // For the program stack, take off the top item and evaluate. 
 // Operand:  return its value, either number itself or value of its variable
 // Operator: pop what it needs off the stack, evaluate the operator, and return that
-+ (double) popAndEvaluate:(NSMutableArray *)stack
-           usingVariableValues:(NSDictionary *)vars
++ (NSNumber *) popAndEvaluate:(NSMutableArray *)stack
+          usingVariableValues:(NSDictionary *)vars
 {
-    double result = 0;
+    NSNumber * result;
    
     id topOfStack = [stack lastObject];
     if (topOfStack) {
@@ -178,60 +96,44 @@
         NSLog(@"stack: nothing found on stack to evaluate");
         return result;
     }
-
-    // OPERATOR CASE
+    
+    // OPERATOR CASE    
     if ([[self class] isOperator:topOfStack]) {
-        NSString * op = topOfStack;
         
-        if ([@"+" isEqualToString:op]) {
-            result = [self popAndEvaluate:stack usingVariableValues:vars] + 
-            [self popAndEvaluate:stack usingVariableValues:vars];
-        } 
-        else if ([@"-" isEqualToString:op]) {
-            result = ([self popAndEvaluate:stack usingVariableValues:vars]) * (-1) + 
-            [self popAndEvaluate:stack usingVariableValues:vars];
-        }
-        else if ([@"*" isEqualToString:op]) {
-            result = [self popAndEvaluate:stack usingVariableValues:vars] *
-            [self popAndEvaluate:stack usingVariableValues:vars];
-        } 
-        else if ([@"/" isEqualToString:op]) {
-            double op1 = [self popAndEvaluate:stack usingVariableValues:vars];
-            double op2 = [self popAndEvaluate:stack usingVariableValues:vars];
-            if (op1 != 0) result = op2 / op1;    // protect against div by zero case
-        } 
-        else if ([@"sqrt" isEqualToString:op]) {
-            result = sqrt([self popAndEvaluate:stack usingVariableValues:vars]);
-        } 
-        else if ([@"x^2" isEqualToString:op]) {
-            double num = [self popAndEvaluate:stack usingVariableValues:vars];
-            result = num * num;
-        } 
-        else if ([@"sin" isEqualToString:op]) {
-            double operandInRadians = 
-            [self popAndEvaluate:stack usingVariableValues:vars] * (pi/180);
-            result = sin(operandInRadians);
-        } 
-        else if ([@"cos" isEqualToString:op]) {
-            double operandInRadians = 
-            [self popAndEvaluate:stack usingVariableValues:vars] * (pi/180);
-            result = cos(operandInRadians);    
-        } 
-        else {
-            NSLog(@"stack: undefined operand \"%@\" somehow made it on the stack", op);
-        }
-    } 
+        NSNumber * operand1num, * operand2num;
         
-    // OPERAND CASE
-    else {
-        // for operands, numbers are values, strings are variables
-        if ([topOfStack isKindOfClass:[NSNumber class]]) {
-            result = [topOfStack doubleValue];
-        } else {
-            result = [[self class] lookupVariable:topOfStack usingVariableValues:vars];
+        NSString * operatorString = topOfStack;    // a bit redundant but more readable        
+        rpnCalcOperator * myCalcOperator = [rpnCalcOperator operatorFromOpname:operatorString];
+        
+        int expectedOperands = myCalcOperator.needsOperands;
+        switch (expectedOperands) {
+            case 1: // unary op
+                operand1num = [[self class] popAndEvaluate:stack
+                                       usingVariableValues:vars];
+                result = [myCalcOperator evaluateOperand:operand1num]; 
+                break;
+            case 2: // binary op
+                operand1num = [[self class] popAndEvaluate:stack
+                                       usingVariableValues:vars];
+                operand2num = [[self class] popAndEvaluate:stack
+                                       usingVariableValues:vars];
+                result = [myCalcOperator evaluateOperand:operand2num
+                                             withOperand:operand1num];
+                break;
+            default:
+                NSLog(@"stack: for operator \"%@\", didn't expect %d operands", operatorString, expectedOperands);
         }
     }
     
+    // OPERAND CASE
+    else {
+        if ([[self class] isVariable:topOfStack]) {
+            result = [[self class] lookupVariable:topOfStack usingVariableValues:vars];
+        } else {
+            result = topOfStack;
+        }
+    }
+      
     return result;
 }
 
@@ -242,7 +144,7 @@
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    return [self popAndEvaluate:stack usingVariableValues:nil];
+    return [[self popAndEvaluate:stack usingVariableValues:nil] doubleValue];
 
 }
 
@@ -254,7 +156,7 @@
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    return [self popAndEvaluate:stack usingVariableValues:vars];    
+    return [[self popAndEvaluate:stack usingVariableValues:vars] doubleValue];    
 }
 
 
@@ -307,7 +209,7 @@
         stack = [program mutableCopy];
 
         while ([stack count]) {
-            NSString * newTerm = [[self class]describeOperand:stack inTheContextOfOperatorLevel:0];
+            NSString * newTerm = [[self class] describeOperand:stack inTheContextOfOperator:nil];
             if ([result length]) {
                 newTerm = [newTerm stringByAppendingString:@", "];
             }
@@ -318,47 +220,47 @@
 }
 
     
-+ (NSString *) describeOperand:(NSMutableArray *)stack inTheContextOfOperatorLevel:(int)predenceOfCaller
++ (NSString *) describeOperand:(NSMutableArray *)stack 
+        inTheContextOfOperator:(rpnCalcOperator *)callerCalcOperator
 {
     NSString * result;
     
     id topOfStack = [stack lastObject];
-    if (topOfStack) [stack removeLastObject];
+    if (topOfStack) {
+        [stack removeLastObject];
+    } else {
+        NSLog(@"stack: nothing found on stack to describe");
+        return result;
+    }
     
     // OPERATOR CASE    
     if ([[self class] isOperator:topOfStack]) {
-        
-        NSString * operator = topOfStack;    // a bit redundant but more readable
-        NSString * op1, * op2;
-        
-        int expectedOperands = [[self class] numberOfOperandsThisOperationUses:operator];
-        int myPrecedenceLevel = [[self class] precedenceOfOperator:operator];
-        
-        switch (expectedOperands) {
-            case 1: // unary op
-                op1 = [[self class] describeOperand:stack inTheContextOfOperatorLevel:myPrecedenceLevel];
-                if ([operator isEqualToString:@"x^2"]) {
-                    result = [NSString stringWithFormat:@"%@^2", op1];                       
-                } else {
-                    result = [NSString stringWithFormat:@"%@%@", operator, op1];
-                }
-                break;
-            case 2: // binary op
-                op2 = [[self class] describeOperand:stack inTheContextOfOperatorLevel:myPrecedenceLevel];
-                op1 = [[self class] describeOperand:stack inTheContextOfOperatorLevel:myPrecedenceLevel];
-                result = [NSString stringWithFormat:@"%@ %@ %@", op1, operator, op2];
 
+        NSString * operand1Str, * operand2Str;
+
+        NSString * operatorString = topOfStack;    // a bit redundant but more readable        
+        rpnCalcOperator * myCalcOperator = [rpnCalcOperator operatorFromOpname:operatorString];
+
+        int expectedOperands = myCalcOperator.needsOperands;
+        switch (expectedOperands) {
+            case 1: // Unary
+                operand1Str = [[self class] describeOperand:stack 
+                                     inTheContextOfOperator:myCalcOperator];
+                result = [myCalcOperator formatOperand:operand1Str
+                                  withinParentOperator:callerCalcOperator];
+                break;
+            case 2: // Binary
+                operand1Str = [[self class] describeOperand:stack
+                                  inTheContextOfOperator:myCalcOperator];
+                operand2Str = [[self class] describeOperand:stack 
+                                  inTheContextOfOperator:myCalcOperator];
+                result = [myCalcOperator formatOperand:operand2Str
+                                           withOperand:operand1Str
+                                  withinParentOperator:callerCalcOperator];
                 break;
             default:
-                NSLog(@"stack: for operator \"%@\", didn't expect %d operands", operator, expectedOperands);
+                NSLog(@"stack: for operator \"%@\", didn't expect %d operands", operatorString, expectedOperands);
         }
-        
-        if (myPrecedenceLevel < predenceOfCaller) {
-            NSString * newStr = [NSString stringWithString:@""];
-            newStr = [NSString stringWithFormat:@"(%@)", result];
-            result = [newStr copy];
-        }
-            
     }
         
     // OPERAND CASE

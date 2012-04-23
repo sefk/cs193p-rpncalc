@@ -18,9 +18,7 @@
 
 @property (readonly) id program;
 
-+ (NSDictionary *)  orderOfOperationsDict;
-
-+ (double)          lookupVariable:(id)var
++ (NSNumber *)      lookupVariable:(id)var
                     usingVariableValues:(NSDictionary *)vars;
 
 + (double)          runProgram:(id)program;

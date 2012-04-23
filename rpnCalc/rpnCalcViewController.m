@@ -62,7 +62,7 @@
 
 - (IBAction)operationPress:(UIButton *)sender 
 {    if (self.entering) {
-        [self enterPress];
+        [self.stack pushOperand:[self.displayCurrent.text doubleValue]];
         self.entering = NO;
     }
 
