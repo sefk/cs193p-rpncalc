@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8683C6791538C5B2004DE0A0 /* rpnCalcStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8683C6781538C5B2004DE0A0 /* rpnCalcStack.m */; };
+		8684B9CF153F6AD400BECEBD /* rpnCalcConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8684B9CE153F6AD400BECEBD /* rpnCalcConstants.m */; };
+		86981F0E1538B9E40055EC7D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F0D1538B9E40055EC7D /* UIKit.framework */; };
+		86981F101538B9E40055EC7D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F0F1538B9E40055EC7D /* Foundation.framework */; };
+		86981F121538B9E40055EC7D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F111538B9E40055EC7D /* CoreGraphics.framework */; };
+		86981F181538B9E40055EC7D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86981F161538B9E40055EC7D /* InfoPlist.strings */; };
+		86981F1A1538B9E40055EC7D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86981F191538B9E40055EC7D /* main.m */; };
+		86981F1E1538B9E40055EC7D /* rpnCalcAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86981F1D1538B9E40055EC7D /* rpnCalcAppDelegate.m */; };
+		86981F211538B9E40055EC7D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86981F1F1538B9E40055EC7D /* MainStoryboard.storyboard */; };
+		86981F241538B9E40055EC7D /* rpnCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86981F231538B9E40055EC7D /* rpnCalcViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8683C6771538C5B2004DE0A0 /* rpnCalcStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcStack.h; sourceTree = "<group>"; };
+		8683C6781538C5B2004DE0A0 /* rpnCalcStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcStack.m; sourceTree = "<group>"; };
+		8684B9CD153F6AD400BECEBD /* rpnCalcConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcConstants.h; sourceTree = "<group>"; };
+		8684B9CE153F6AD400BECEBD /* rpnCalcConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcConstants.m; sourceTree = "<group>"; };
+		86981F091538B9E40055EC7D /* rpnCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rpnCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86981F0D1538B9E40055EC7D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		86981F0F1538B9E40055EC7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		86981F111538B9E40055EC7D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		86981F151538B9E40055EC7D /* rpnCalc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "rpnCalc-Info.plist"; sourceTree = "<group>"; };
+		86981F171538B9E40055EC7D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		86981F191538B9E40055EC7D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		86981F1B1538B9E40055EC7D /* rpnCalc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rpnCalc-Prefix.pch"; sourceTree = "<group>"; };
+		86981F1C1538B9E40055EC7D /* rpnCalcAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rpnCalcAppDelegate.h; sourceTree = "<group>"; };
+		86981F1D1538B9E40055EC7D /* rpnCalcAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rpnCalcAppDelegate.m; sourceTree = "<group>"; };
+		86981F201538B9E40055EC7D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		86981F221538B9E40055EC7D /* rpnCalcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rpnCalcViewController.h; sourceTree = "<group>"; };
+		86981F231538B9E40055EC7D /* rpnCalcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rpnCalcViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		86981F061538B9E40055EC7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86981F0E1538B9E40055EC7D /* UIKit.framework in Frameworks */,
+				86981F101538B9E40055EC7D /* Foundation.framework in Frameworks */,
+				86981F121538B9E40055EC7D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		86981EFE1538B9E40055EC7D = {
+			isa = PBXGroup;
+			children = (
+				86981F131538B9E40055EC7D /* rpnCalc */,
+				86981F0C1538B9E40055EC7D /* Frameworks */,
+				86981F0A1538B9E40055EC7D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		86981F0A1538B9E40055EC7D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86981F091538B9E40055EC7D /* rpnCalc.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		86981F0C1538B9E40055EC7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				86981F0D1538B9E40055EC7D /* UIKit.framework */,
+				86981F0F1538B9E40055EC7D /* Foundation.framework */,
+				86981F111538B9E40055EC7D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		86981F131538B9E40055EC7D /* rpnCalc */ = {
+			isa = PBXGroup;
+			children = (
+				8683C6771538C5B2004DE0A0 /* rpnCalcStack.h */,
+				8683C6781538C5B2004DE0A0 /* rpnCalcStack.m */,
+				86981F1C1538B9E40055EC7D /* rpnCalcAppDelegate.h */,
+				86981F1D1538B9E40055EC7D /* rpnCalcAppDelegate.m */,
+				86981F1F1538B9E40055EC7D /* MainStoryboard.storyboard */,
+				86981F221538B9E40055EC7D /* rpnCalcViewController.h */,
+				86981F231538B9E40055EC7D /* rpnCalcViewController.m */,
+				8684B9CD153F6AD400BECEBD /* rpnCalcConstants.h */,
+				8684B9CE153F6AD400BECEBD /* rpnCalcConstants.m */,
+				86981F141538B9E40055EC7D /* Supporting Files */,
+			);
+			path = rpnCalc;
+			sourceTree = "<group>";
+		};
+		86981F141538B9E40055EC7D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				86981F151538B9E40055EC7D /* rpnCalc-Info.plist */,
+				86981F161538B9E40055EC7D /* InfoPlist.strings */,
+				86981F191538B9E40055EC7D /* main.m */,
+				86981F1B1538B9E40055EC7D /* rpnCalc-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		86981F081538B9E40055EC7D /* rpnCalc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86981F271538B9E40055EC7D /* Build configuration list for PBXNativeTarget "rpnCalc" */;
+			buildPhases = (
+				86981F051538B9E40055EC7D /* Sources */,
+				86981F061538B9E40055EC7D /* Frameworks */,
+				86981F071538B9E40055EC7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = rpnCalc;
+			productName = rpnCalc;
+			productReference = 86981F091538B9E40055EC7D /* rpnCalc.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		86981F001538B9E40055EC7D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = rpnCalc;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 86981F031538B9E40055EC7D /* Build configuration list for PBXProject "rpnCalc" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 86981EFE1538B9E40055EC7D;
+			productRefGroup = 86981F0A1538B9E40055EC7D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				86981F081538B9E40055EC7D /* rpnCalc */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		86981F071538B9E40055EC7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86981F181538B9E40055EC7D /* InfoPlist.strings in Resources */,
+				86981F211538B9E40055EC7D /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		86981F051538B9E40055EC7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86981F1A1538B9E40055EC7D /* main.m in Sources */,
+				86981F1E1538B9E40055EC7D /* rpnCalcAppDelegate.m in Sources */,
+				86981F241538B9E40055EC7D /* rpnCalcViewController.m in Sources */,
+				8683C6791538C5B2004DE0A0 /* rpnCalcStack.m in Sources */,
+				8684B9CF153F6AD400BECEBD /* rpnCalcConstants.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		86981F161538B9E40055EC7D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86981F171538B9E40055EC7D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		86981F1F1538B9E40055EC7D /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86981F201538B9E40055EC7D /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		86981F251538B9E40055EC7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		86981F261538B9E40055EC7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		86981F281538B9E40055EC7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "rpnCalc/rpnCalc-Prefix.pch";
+				INFOPLIST_FILE = "rpnCalc/rpnCalc-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		86981F291538B9E40055EC7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "rpnCalc/rpnCalc-Prefix.pch";
+				INFOPLIST_FILE = "rpnCalc/rpnCalc-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		86981F031538B9E40055EC7D /* Build configuration list for PBXProject "rpnCalc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86981F251538B9E40055EC7D /* Debug */,
+				86981F261538B9E40055EC7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86981F271538B9E40055EC7D /* Build configuration list for PBXNativeTarget "rpnCalc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86981F281538B9E40055EC7D /* Debug */,
+				86981F291538B9E40055EC7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 86981F001538B9E40055EC7D /* Project object */;
+}
