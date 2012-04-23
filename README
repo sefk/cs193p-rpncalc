@@ -4,3 +4,9 @@ Don't try to use for anything useful.
 For more info, see http://cs193p.stanford.edu/
 
 - Sef Kloninger
+
+
+TODO
+
+- With the refactoring I am now getting these warnings:
+  "PerformSelector may cause a leak because its selector is unknown"
