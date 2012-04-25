@@ -8,5 +8,8 @@ For more info, see http://cs193p.stanford.edu/
 
 TODO
 
-- With the refactoring I am now getting these warnings:
-  "PerformSelector may cause a leak because its selector is unknown"
+- With the refactoring I am now getting these warnings: "PerformSelector may cause 
+  a leak because its selector is unknown"
+- When we don't have the right number of operands, consider going into an "error mode"
+  and displaying a red "E" or something like that.  Now it just assumes zero and runs
+  with that, which is a little presumptuous.
