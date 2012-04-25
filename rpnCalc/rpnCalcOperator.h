@@ -1,7 +1,7 @@
 //
 //  rpnCalcOperator.h
 //  
-//  Handle all the low level grungy stuff for particular  operations.  
+//  Handle all the low level grungy stuff for particular operations.  
 //
 //  For example, here is the logic that  "cos" takes one parameter, is evaluated by 
 //  the cos() math function, and always needs parenthesis around the term it's 
