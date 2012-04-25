@@ -1,6 +1,7 @@
 //
 //  rpnCalcOperator.m
-//  rpnCalc
+//  
+//  Meat of operation handling.
 //
 //  Created by Sef Kloninger on 4/22/12.
 //  Copyright (c) 2012 Peek 222 Software. All rights reserved.
@@ -276,7 +277,16 @@
 {
     double aVal = [a doubleValue];
     double bVal = [b doubleValue];
-    return [NSNumber numberWithDouble:(aVal / bVal)];
+    double result;
+
+    // Need to handle the div by zero case, may as well do here at the lowest level
+    if (bVal == 0) {
+        result = 0;
+    } else {
+        result = aVal / bVal;
+    }
+
+    return [NSNumber numberWithDouble:result];
 }
 
 - (NSString *) formatDiv:(NSString *)a

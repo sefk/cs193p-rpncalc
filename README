@@ -13,3 +13,5 @@ TODO
 - When we don't have the right number of operands, consider going into an "error mode"
   and displaying a red "E" or something like that.  Now it just assumes zero and runs
   with that, which is a little presumptuous.
+- Same with divide-by-zero case.  Currently just evals to zero.  Infinity makes more
+  sense, error makes even more sense.
