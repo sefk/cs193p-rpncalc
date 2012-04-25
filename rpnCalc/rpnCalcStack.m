@@ -93,7 +93,8 @@
     if (topOfStack) {
         [stack removeLastObject];
     } else {
-        NSLog(@"stack: nothing found on stack to evaluate");
+        NSLog(@"stack: evaluating empty stack, assume 0");
+        // when there's something missing on the stack, assume zero (which it is by default)
         return result;
     }
     
@@ -104,8 +105,11 @@
         
         NSString * operatorString = topOfStack;    // a bit redundant but more readable        
         rpnCalcOperator * myCalcOperator = [rpnCalcOperator operatorFromOpname:operatorString];
+        int expectedOperands = myCalcOperator.needsOperands;        
         
-        int expectedOperands = myCalcOperator.needsOperands;
+        // don't need to check if we have enough operands here.  If there are 
+        // two few, we assume zero and run with it
+
         switch (expectedOperands) {
             case 1: // unary op
                 operand1num = [[self class] popAndEvaluate:stack
@@ -121,7 +125,7 @@
                                              withOperand:operand1num];
                 break;
             default:
-                NSLog(@"stack: for operator \"%@\", didn't expect %d operands", operatorString, expectedOperands);
+                NSLog(@"stack: evaluating operator \"%@\", didn't expect %d operands", operatorString, expectedOperands);
         }
     }
     
@@ -230,7 +234,8 @@
     if (topOfStack) {
         [stack removeLastObject];
     } else {
-        NSLog(@"stack: nothing found on stack to describe");
+        NSLog(@"stack: describing empty stack, assuming \"0\"");
+        result = @"0";  // when there's something missing on the stack, assume zero
         return result;
     }
     
@@ -241,23 +246,26 @@
 
         NSString * operatorString = topOfStack;    // a bit redundant but more readable        
         rpnCalcOperator * myCalcOperator = [rpnCalcOperator operatorFromOpname:operatorString];
-
         int expectedOperands = myCalcOperator.needsOperands;
+        
+        // don't need to check if we have enough operands here.  If there are 
+        // two few, we assume zero and run with it.
+        
         switch (expectedOperands) {
             case 1: // Unary
                 operand1Str = [[self class] describeOperand:stack 
                                      inTheContextOfOperator:myCalcOperator];
-                result = [myCalcOperator formatOperand:operand1Str
-                                  withinParentOperator:callerCalcOperator];
+                result = [     myCalcOperator formatOperand:operand1Str
+                                       withinParentOperator:callerCalcOperator];
                 break;
             case 2: // Binary
                 operand1Str = [[self class] describeOperand:stack
-                                  inTheContextOfOperator:myCalcOperator];
+                                     inTheContextOfOperator:myCalcOperator];
                 operand2Str = [[self class] describeOperand:stack 
-                                  inTheContextOfOperator:myCalcOperator];
-                result = [myCalcOperator formatOperand:operand2Str
-                                           withOperand:operand1Str
-                                  withinParentOperator:callerCalcOperator];
+                                     inTheContextOfOperator:myCalcOperator];
+                result =      [myCalcOperator formatOperand:operand2Str
+                                                withOperand:operand1Str
+                                       withinParentOperator:callerCalcOperator];
                 break;
             default:
                 NSLog(@"stack: for operator \"%@\", didn't expect %d operands", operatorString, expectedOperands);
