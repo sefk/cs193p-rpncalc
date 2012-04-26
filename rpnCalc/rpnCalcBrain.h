@@ -1,5 +1,5 @@
 //
-//  rpnCalcStack.h
+//  rpnCalcBrain.h
 //  rpnCalc
 //
 //  Created by Sef Kloninger on 4/13/12.
@@ -10,7 +10,7 @@
 #import "rpnCalcVariableValues.h"
 
 
-@interface rpnCalcStack : NSObject
+@interface rpnCalcBrain : NSObject
 
 - (void)        pushOperand:(double)num;
 - (void)        pushVariable:(NSString *)var;

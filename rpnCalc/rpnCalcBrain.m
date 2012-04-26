@@ -1,22 +1,22 @@
 //
-//  rpnCalcStack.m
+//  rpnCalcBrain.m
 //  rpnCalc
 //
 //  Created by Sef Kloninger on 4/13/12.
 //  Copyright (c) 2012 Peek 222. All rights reserved.
 //
 
-#import "rpnCalcStack.h"
+#import "rpnCalcBrain.h"
 #import "rpnCalcOperator.h"
 #import "rpnCalcVariableValues.h"
 
-@interface rpnCalcStack()
+@interface rpnCalcBrain()
 
 @property (nonatomic, strong) NSMutableArray *programStack;
 
 @end
 
-@implementation rpnCalcStack
+@implementation rpnCalcBrain
 
 
 //
@@ -68,7 +68,7 @@
     NSNumber * numObj;
     numObj = [vars objectForKey:var];
     if (!numObj) {
-        NSLog(@"stack: assuming \"%@\" is a variable, but not found\n", var);
+        NSLog(@"brain: assuming \"%@\" is a variable, but not found\n", var);
         // result already 0, and that's OK for the var not found case
     }
     return numObj;
@@ -115,7 +115,7 @@
                 result = [myCalcOperator evaluateOperand:operand2num withOperand:operand1num];
                 break;
             default:
-                NSLog(@"stack: evaluating operator \"%@\", didn't expect %d operands", operatorString, expectedOperands);
+                NSLog(@"brain: evaluating operator \"%@\", didn't expect %d operands", operatorString, expectedOperands);
         }
     }
     

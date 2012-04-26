@@ -7,12 +7,12 @@
 //
 
 #import "rpnCalcViewController.h"
-#import "rpnCalcStack.h"
+#import "rpnCalcBrain.h"
 #import "rpnCalcVariableValues.h"
 
 @interface rpnCalcViewController ()
 @property (nonatomic) BOOL entering;
-@property (nonatomic, strong) rpnCalcStack * stack;
+@property (nonatomic, strong) rpnCalcBrain * brain;
 @property (nonatomic, strong) rpnCalcVariableValues * variableValues;
 
 @end
@@ -25,12 +25,12 @@
 @synthesize displayCurrent = _displayCurrent;
 @synthesize displayLog = _displayLog;
 
-@synthesize stack = _stack;
+@synthesize brain = _brain;
 
-- (rpnCalcStack *) stack
+- (rpnCalcBrain *) brain
 {
-    if (!_stack) _stack = [[rpnCalcStack alloc] init];
-    return _stack;
+    if (!_brain) _brain = [[rpnCalcBrain alloc] init];
+    return _brain;
 }
 
 
@@ -60,12 +60,12 @@
 
 - (void) refreshDisplayLog
 {
-    self.displayLog.text = [[self.stack class] describeProgram:self.stack.program];
+    self.displayLog.text = [[self.brain class] describeProgram:self.brain.program];
 }
 
 - (void) pushCurrentOntoStack
 {
-    [self.stack pushOperand:[self.displayCurrent.text doubleValue]];
+    [self.brain pushOperand:[self.displayCurrent.text doubleValue]];
 }
 
 
@@ -89,7 +89,7 @@
     }
 
     NSString *op = sender.currentTitle;
-    double result = [self.stack pushOperatorAndEvaluate:op
+    double result = [self.brain pushOperatorAndEvaluate:op
                                       usingVariableDict:self.variableValues.dict];
                   
     [self refreshDisplayLog];
@@ -135,7 +135,7 @@
 {
     [self clearPress:sender];
     
-    [self.stack clear];
+    [self.brain clear];
     [self refreshDisplayLog];
 }
 
@@ -149,8 +149,8 @@
     if (self.entering) {
         self.entering = NO;
         [self pushCurrentOntoStack];
-        [self.stack pushVariable:var];
-        result = [self.stack pushOperatorAndEvaluate:@"*"
+        [self.brain pushVariable:var];
+        result = [self.brain pushOperatorAndEvaluate:@"*"
                                    usingVariableDict:self.variableValues.dict];
         
         [self refreshDisplayLog];
@@ -158,7 +158,7 @@
         NSString * resultString = [NSString stringWithFormat:@"%g", result];
         self.displayCurrent.text = resultString;
     } else {
-        [self.stack pushVariable:var];
+        [self.brain pushVariable:var];
         self.displayCurrent.text = var;
     }
 }
