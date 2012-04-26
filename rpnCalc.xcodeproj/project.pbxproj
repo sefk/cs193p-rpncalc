@@ -18,12 +18,13 @@
 		86981F211538B9E40055EC7D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86981F1F1538B9E40055EC7D /* MainStoryboard.storyboard */; };
 		86981F241538B9E40055EC7D /* rpnCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86981F231538B9E40055EC7D /* rpnCalcViewController.m */; };
 		86E56F0315450D9D00380480 /* rpnCalcOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E56F0215450D9D00380480 /* rpnCalcOperator.m */; };
+		86F2DA4B1549DCFF00689699 /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA4A1549DCFF00689699 /* AxesDrawer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		866CB8991549C16A002C298C /* rpnCalcVariableValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcVariableValues.h; sourceTree = "<group>"; };
 		866CB89A1549C16A002C298C /* rpnCalcVariableValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcVariableValues.m; sourceTree = "<group>"; };
-		8683C6771538C5B2004DE0A0 /* rpnCalcBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; path = rpnCalcBrain.h; sourceTree = "<group>"; };
+		8683C6771538C5B2004DE0A0 /* rpnCalcBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcBrain.h; sourceTree = "<group>"; };
 		8683C6781538C5B2004DE0A0 /* rpnCalcBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcBrain.m; sourceTree = "<group>"; };
 		86981F091538B9E40055EC7D /* rpnCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rpnCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86981F0D1538B9E40055EC7D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -40,6 +41,8 @@
 		86981F231538B9E40055EC7D /* rpnCalcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rpnCalcViewController.m; sourceTree = "<group>"; };
 		86E56F0115450D9D00380480 /* rpnCalcOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcOperator.h; sourceTree = "<group>"; };
 		86E56F0215450D9D00380480 /* rpnCalcOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcOperator.m; sourceTree = "<group>"; };
+		86F2DA491549DCFF00689699 /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
+		86F2DA4A1549DCFF00689699 /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 				8683C6781538C5B2004DE0A0 /* rpnCalcBrain.m */,
 				866CB8991549C16A002C298C /* rpnCalcVariableValues.h */,
 				866CB89A1549C16A002C298C /* rpnCalcVariableValues.m */,
+				86F2DA491549DCFF00689699 /* AxesDrawer.h */,
+				86F2DA4A1549DCFF00689699 /* AxesDrawer.m */,
 				86E56F0115450D9D00380480 /* rpnCalcOperator.h */,
 				86E56F0215450D9D00380480 /* rpnCalcOperator.m */,
 				86981F1C1538B9E40055EC7D /* rpnCalcAppDelegate.h */,
@@ -182,6 +187,7 @@
 				8683C6791538C5B2004DE0A0 /* rpnCalcBrain.m in Sources */,
 				86E56F0315450D9D00380480 /* rpnCalcOperator.m in Sources */,
 				866CB89B1549C16A002C298C /* rpnCalcVariableValues.m in Sources */,
+				86F2DA4B1549DCFF00689699 /* AxesDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
