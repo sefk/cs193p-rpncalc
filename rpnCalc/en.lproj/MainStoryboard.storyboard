@@ -6,7 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
     </dependencies>
     <scenes>
-        <!--Rpn Calc View Controller - Calculator-->
+        <!--Rpn Calc View Controller - rpnCalc-->
         <scene sceneID="5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -403,7 +403,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Calculator" id="bDf-JX-Gv4"/>
+                    <navigationItem key="navigationItem" title="rpnCalc" id="bDf-JX-Gv4"/>
                     <connections>
                         <outlet property="displayCurrent" destination="HZu-mN-Ka8" id="8hE-3Q-lUe"/>
                         <outlet property="displayLog" destination="l3v-7E-6qf" id="q5x-lO-xeI"/>
