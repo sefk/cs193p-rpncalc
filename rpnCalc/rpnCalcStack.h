@@ -7,25 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "rpnCalcVariableValues.h"
+
 
 @interface rpnCalcStack : NSObject
 
 - (void)        pushOperand:(double)num;
 - (void)        pushVariable:(NSString *)var;
-- (double)      pushOperatorAndEvaluate:(NSString *)operate;
+- (double)      pushOperatorAndEvaluate:(NSString *)operate
+                      usingVariableDict:(NSMutableDictionary *)vars;
 - (int)         depth;
 - (void)        clear;
 
 @property (readonly) id program;
 
-+ (NSNumber *)      lookupVariable:(id)var
-                    usingVariableValues:(NSDictionary *)vars;
++ (NSNumber *)      lookupVariable:(NSString *)var
+                    usingVariableDict:(NSMutableDictionary *)vars;
 
-+ (double)          runProgram:(id)program;
 + (double)          runProgram:(id)program
-                    usingVariableValues:(NSDictionary *)vars;
+                    usingVariableDict:(NSMutableDictionary *)vars;
 
 + (NSString *)      describeProgram:(id)program;
-+ (NSSet *)         variablesUsedInProgram:(id)program;
+
+//+ (NSSet *)         variablesUsedInProgram:(id)program;
 
 @end

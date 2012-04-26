@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		866CB89B1549C16A002C298C /* rpnCalcVariableValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 866CB89A1549C16A002C298C /* rpnCalcVariableValues.m */; };
 		8683C6791538C5B2004DE0A0 /* rpnCalcStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8683C6781538C5B2004DE0A0 /* rpnCalcStack.m */; };
-		8684B9CF153F6AD400BECEBD /* rpnCalcConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8684B9CE153F6AD400BECEBD /* rpnCalcConstants.m */; };
 		86981F0E1538B9E40055EC7D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F0D1538B9E40055EC7D /* UIKit.framework */; };
 		86981F101538B9E40055EC7D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F0F1538B9E40055EC7D /* Foundation.framework */; };
 		86981F121538B9E40055EC7D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F111538B9E40055EC7D /* CoreGraphics.framework */; };
@@ -21,10 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		866CB8991549C16A002C298C /* rpnCalcVariableValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcVariableValues.h; sourceTree = "<group>"; };
+		866CB89A1549C16A002C298C /* rpnCalcVariableValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcVariableValues.m; sourceTree = "<group>"; };
 		8683C6771538C5B2004DE0A0 /* rpnCalcStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcStack.h; sourceTree = "<group>"; };
 		8683C6781538C5B2004DE0A0 /* rpnCalcStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcStack.m; sourceTree = "<group>"; };
-		8684B9CD153F6AD400BECEBD /* rpnCalcConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcConstants.h; sourceTree = "<group>"; };
-		8684B9CE153F6AD400BECEBD /* rpnCalcConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcConstants.m; sourceTree = "<group>"; };
 		86981F091538B9E40055EC7D /* rpnCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rpnCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86981F0D1538B9E40055EC7D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		86981F0F1538B9E40055EC7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -88,6 +88,8 @@
 			children = (
 				8683C6771538C5B2004DE0A0 /* rpnCalcStack.h */,
 				8683C6781538C5B2004DE0A0 /* rpnCalcStack.m */,
+				866CB8991549C16A002C298C /* rpnCalcVariableValues.h */,
+				866CB89A1549C16A002C298C /* rpnCalcVariableValues.m */,
 				86E56F0115450D9D00380480 /* rpnCalcOperator.h */,
 				86E56F0215450D9D00380480 /* rpnCalcOperator.m */,
 				86981F1C1538B9E40055EC7D /* rpnCalcAppDelegate.h */,
@@ -95,8 +97,6 @@
 				86981F1F1538B9E40055EC7D /* MainStoryboard.storyboard */,
 				86981F221538B9E40055EC7D /* rpnCalcViewController.h */,
 				86981F231538B9E40055EC7D /* rpnCalcViewController.m */,
-				8684B9CD153F6AD400BECEBD /* rpnCalcConstants.h */,
-				8684B9CE153F6AD400BECEBD /* rpnCalcConstants.m */,
 				86981F141538B9E40055EC7D /* Supporting Files */,
 			);
 			path = rpnCalc;
@@ -180,8 +180,8 @@
 				86981F1E1538B9E40055EC7D /* rpnCalcAppDelegate.m in Sources */,
 				86981F241538B9E40055EC7D /* rpnCalcViewController.m in Sources */,
 				8683C6791538C5B2004DE0A0 /* rpnCalcStack.m in Sources */,
-				8684B9CF153F6AD400BECEBD /* rpnCalcConstants.m in Sources */,
 				86E56F0315450D9D00380480 /* rpnCalcOperator.m in Sources */,
+				866CB89B1549C16A002C298C /* rpnCalcVariableValues.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

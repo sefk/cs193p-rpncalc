@@ -7,22 +7,16 @@
 //
 
 #import "rpnCalcStack.h"
-#import "rpnCalcConstants.h"
 #import "rpnCalcOperator.h"
+#import "rpnCalcVariableValues.h"
 
 @interface rpnCalcStack()
+
 @property (nonatomic, strong) NSMutableArray *programStack;
 
 @end
 
-
-
 @implementation rpnCalcStack
-
-
-// TODO: move all this operator junk into its own file (and class) and provide better abstraction
-
-// TODO: treat PI as a symbol instead of just a real value
 
 
 //
@@ -68,8 +62,8 @@
 
 // Return the value of the variable in the list of variables.  If not found, logs an error and returns 0.
 // TODO: should replace variable-not-found with raising an exception
-+ (NSNumber *) lookupVariable:(id)var 
-           usingVariableValues:(NSDictionary *)vars
++ (NSNumber *) lookupVariable:(NSString *)var 
+            usingVariableDict:(NSMutableDictionary *)vars
 {
     NSNumber * numObj;
     numObj = [vars objectForKey:var];
@@ -85,7 +79,7 @@
 // Operand:  return its value, either number itself or value of its variable
 // Operator: pop what it needs off the stack, evaluate the operator, and return that
 + (NSNumber *) popAndEvaluate:(NSMutableArray *)stack
-          usingVariableValues:(NSDictionary *)vars
+            usingVariableDict:(NSMutableDictionary *)vars
 {
     NSNumber * result;
    
@@ -112,17 +106,13 @@
 
         switch (expectedOperands) {
             case 1: // unary op
-                operand1num = [[self class] popAndEvaluate:stack
-                                       usingVariableValues:vars];
+                operand1num = [[self class] popAndEvaluate:stack usingVariableDict:vars];
                 result = [myCalcOperator evaluateOperand:operand1num]; 
                 break;
             case 2: // binary op
-                operand1num = [[self class] popAndEvaluate:stack
-                                       usingVariableValues:vars];
-                operand2num = [[self class] popAndEvaluate:stack
-                                       usingVariableValues:vars];
-                result = [myCalcOperator evaluateOperand:operand2num
-                                             withOperand:operand1num];
+                operand1num = [[self class] popAndEvaluate:stack usingVariableDict:vars];
+                operand2num = [[self class] popAndEvaluate:stack usingVariableDict:vars];
+                result = [myCalcOperator evaluateOperand:operand2num withOperand:operand1num];
                 break;
             default:
                 NSLog(@"stack: evaluating operator \"%@\", didn't expect %d operands", operatorString, expectedOperands);
@@ -132,7 +122,7 @@
     // OPERAND CASE
     else {
         if ([[self class] isVariable:topOfStack]) {
-            result = [[self class] lookupVariable:topOfStack usingVariableValues:vars];
+            result = [[self class] lookupVariable:topOfStack usingVariableDict:vars];
         } else {
             result = topOfStack;
         }
@@ -142,25 +132,14 @@
 }
 
 
-+ (double) runProgram:(id)program
++ (double)     runProgram:(id)program
+        usingVariableDict:(NSMutableDictionary *)vars
 {
     NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    return [[self popAndEvaluate:stack usingVariableValues:nil] doubleValue];
-
-}
-
-
-+ (double) runProgram:(id)program
-        usingVariableValues:(NSDictionary *)vars
-{
-    NSMutableArray *stack;
-    if ([program isKindOfClass:[NSArray class]]) {
-        stack = [program mutableCopy];
-    }
-    return [[self popAndEvaluate:stack usingVariableValues:vars] doubleValue];    
+    return [[self popAndEvaluate:stack usingVariableDict:vars] doubleValue];    
 }
 
 
@@ -176,9 +155,10 @@
 }
 
 - (double) pushOperatorAndEvaluate:(NSString *)op
+                 usingVariableDict:(NSMutableDictionary *) vars
 {
     [self.programStack addObject:op];
-    return [[self class] runProgram:self.program];
+    return [[self class] runProgram:self.program usingVariableDict:vars];
 }
 
 - (int) depth
@@ -288,11 +268,11 @@
 }
 
 
-
+/*
 + (NSSet *) variablesUsedInProgram:(id)program
 {
     // TODO
 }
-
+*/
 
 @end

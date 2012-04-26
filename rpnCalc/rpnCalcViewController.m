@@ -8,11 +8,12 @@
 
 #import "rpnCalcViewController.h"
 #import "rpnCalcStack.h"
-#import "rpnCalcConstants.h"
+#import "rpnCalcVariableValues.h"
 
 @interface rpnCalcViewController ()
 @property (nonatomic) BOOL entering;
-@property (nonatomic, strong) rpnCalcStack *stack;
+@property (nonatomic, strong) rpnCalcStack * stack;
+@property (nonatomic, strong) rpnCalcVariableValues * variableValues;
 
 @end
 
@@ -31,6 +32,18 @@
     if (!_stack) _stack = [[rpnCalcStack alloc] init];
     return _stack;
 }
+
+
+@synthesize variableValues = _variableValues;
+
+- (rpnCalcVariableValues *) variableValues
+{
+    if (!_variableValues) {
+        _variableValues = [[rpnCalcVariableValues alloc] init];
+    }
+    return _variableValues;
+}
+
 
 //
 // HELPER FUNCTIONS (PRIVATE)
@@ -76,7 +89,8 @@
     }
 
     NSString *op = sender.currentTitle;
-    double result = [self.stack pushOperatorAndEvaluate:op];
+    double result = [self.stack pushOperatorAndEvaluate:op
+                                      usingVariableDict:self.variableValues.dict];
                   
     [self refreshDisplayLog];
     
@@ -87,8 +101,10 @@
 
 - (IBAction)enterPress 
 {
-    self.entering = NO;
-    [self pushCurrentOntoStack];
+    if (self.entering) {
+        self.entering = NO;
+        [self pushCurrentOntoStack];
+    }
     
     [self refreshDisplayLog];    
 }
@@ -124,25 +140,6 @@
 }
 
 
-- (IBAction)piPress:(UIButton *)sender 
-{
-    double result;
-    
-    if (self.entering) {
-        self.entering = NO;
-        [self pushCurrentOntoStack];
-        [self.stack pushOperand:pi];
-        result = [self.stack pushOperatorAndEvaluate:@"*"];
-    } else {
-        [self.stack pushOperand:pi];        
-        result = pi;
-    }
-    
-    NSString * resultString = [NSString stringWithFormat:@"%g", result];
-    self.displayCurrent.text = resultString;
-}
-
-
 - (IBAction)varPress:(UIButton *)sender 
 {
     double result;
@@ -153,7 +150,10 @@
         self.entering = NO;
         [self pushCurrentOntoStack];
         [self.stack pushVariable:var];
-        result = [self.stack pushOperatorAndEvaluate:@"*"];
+        result = [self.stack pushOperatorAndEvaluate:@"*"
+                                   usingVariableDict:self.variableValues.dict];
+        
+        [self refreshDisplayLog];
 
         NSString * resultString = [NSString stringWithFormat:@"%g", result];
         self.displayCurrent.text = resultString;
