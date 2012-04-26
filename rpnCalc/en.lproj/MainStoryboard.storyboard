@@ -18,7 +18,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="HZu-mN-Ka8">
                                 <rect key="frame" x="92" y="56" width="208" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -399,6 +399,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Veq-0K-Ns6" kind="push" id="o8w-C4-3OC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -410,7 +413,22 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-2619" y="137"/>
+            <point key="canvasLocation" x="-3413" y="199"/>
+        </scene>
+        <!--View Controller - Graph-->
+        <scene sceneID="bc5-Df-7HI">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gfn-La-cbI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Veq-0K-Ns6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GQP-Be-hnU">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Graph" id="jxS-nY-PHN"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-2950" y="199"/>
         </scene>
         <!--Navigation Controller - rpnCalcNavigationController-->
         <scene sceneID="UEK-QL-rAm">
@@ -428,7 +446,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-3093" y="137"/>
+            <point key="canvasLocation" x="-3887" y="199"/>
         </scene>
     </scenes>
     <classes>
