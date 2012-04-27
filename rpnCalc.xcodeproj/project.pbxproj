@@ -19,6 +19,7 @@
 		86981F241538B9E40055EC7D /* rpnCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86981F231538B9E40055EC7D /* rpnCalcViewController.m */; };
 		86E56F0315450D9D00380480 /* rpnCalcOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E56F0215450D9D00380480 /* rpnCalcOperator.m */; };
 		86F2DA4B1549DCFF00689699 /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA4A1549DCFF00689699 /* AxesDrawer.m */; };
+		86F2DA4F1549DDE200689699 /* rpnCalcGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA4E1549DDE200689699 /* rpnCalcGraphViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		86E56F0215450D9D00380480 /* rpnCalcOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcOperator.m; sourceTree = "<group>"; };
 		86F2DA491549DCFF00689699 /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
 		86F2DA4A1549DCFF00689699 /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
+		86F2DA4D1549DDE200689699 /* rpnCalcGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcGraphViewController.h; sourceTree = "<group>"; };
+		86F2DA4E1549DDE200689699 /* rpnCalcGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcGraphViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				866CB89A1549C16A002C298C /* rpnCalcVariableValues.m */,
 				86F2DA491549DCFF00689699 /* AxesDrawer.h */,
 				86F2DA4A1549DCFF00689699 /* AxesDrawer.m */,
+				86F2DA4D1549DDE200689699 /* rpnCalcGraphViewController.h */,
+				86F2DA4E1549DDE200689699 /* rpnCalcGraphViewController.m */,
 				86E56F0115450D9D00380480 /* rpnCalcOperator.h */,
 				86E56F0215450D9D00380480 /* rpnCalcOperator.m */,
 				86981F1C1538B9E40055EC7D /* rpnCalcAppDelegate.h */,
@@ -188,6 +193,7 @@
 				86E56F0315450D9D00380480 /* rpnCalcOperator.m in Sources */,
 				866CB89B1549C16A002C298C /* rpnCalcVariableValues.m in Sources */,
 				86F2DA4B1549DCFF00689699 /* AxesDrawer.m in Sources */,
+				86F2DA4F1549DDE200689699 /* rpnCalcGraphViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
