@@ -85,13 +85,13 @@
     
     [self.graphView setNeedsDisplay];
 
-    [super viewWillAppear:animated]
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self saveDataToPermanentStore];
-    [super viewWillDisappear:animated]
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload
