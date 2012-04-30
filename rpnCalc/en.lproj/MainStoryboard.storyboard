@@ -425,7 +425,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-3413" y="199"/>
+            <point key="canvasLocation" x="-3437" y="199"/>
         </scene>
         <!--Graph View Controller - Graph-->
         <scene sceneID="FXX-FF-RDh">
@@ -442,23 +442,32 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="JqW-vd-hce">
-                                <rect key="frame" x="20" y="15" width="280" height="21"/>
+                                <rect key="frame" x="20" y="15" width="193" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="PuN-4P-w0e">
+                                <rect key="frame" x="230" y="9" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="lineModeSwitchAction" destination="35S-e4-exn" eventType="valueChanged" id="uMx-Mz-kFN"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Graph" id="aEV-Xf-Sud"/>
                     <connections>
                         <outlet property="graphView" destination="HQ8-DJ-Yvu" id="dzF-Eo-kdP"/>
+                        <outlet property="lineModeSwitch" destination="PuN-4P-w0e" id="ooI-AZ-V9F"/>
                         <outlet property="programDescriptionLabel" destination="JqW-vd-hce" id="sPf-mT-Rnh"/>
+                        <outlet property="view" destination="jpc-mz-0jv" id="aeh-ti-xoW"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-2940" y="202"/>
+            <point key="canvasLocation" x="-2977" y="199"/>
         </scene>
         <!--Navigation Controller - rpnCalcNavigationController-->
         <scene sceneID="UEK-QL-rAm">
@@ -490,6 +499,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
+                <relationship kind="outlet" name="lineModeSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="programDescriptionLabel" candidateClass="UILabel"/>
             </relationships>
         </class>

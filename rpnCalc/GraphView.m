@@ -29,6 +29,7 @@
     }
     return _origin;
 }
+
 - (void)setOrigin:(CGPoint)newOrigin
 {
     _origin.x = newOrigin.x;
@@ -36,6 +37,7 @@
     self.originHasBeenSet = YES;
     [self setNeedsDisplay];     
 }
+
 - (void)adjustOrigin:(CGPoint)offset
 {
     _origin.x += offset.x;
@@ -60,9 +62,7 @@
 }
 
 
-
 @synthesize dataSource = _dataSource;
-
 
 
 - (void)setup
@@ -82,16 +82,6 @@
         [self setup];
     }
     return self;
-}
-
-
-- (void)drawCircleAtPoint:(CGPoint)p withRadius:(CGFloat)radius inContext:(CGContextRef)context
-{
-    UIGraphicsPushContext(context);
-    CGContextBeginPath(context);
-    CGContextAddArc(context, p.x, p.y, radius, 0, 2*M_PI, YES); // 360 degree (0 to 2pi) arc
-    CGContextStrokePath(context);
-    UIGraphicsPopContext();
 }
 
 
@@ -118,14 +108,77 @@
 }
 
 
+const CGFloat darkRedColorValues[] = {1.0, 0.2, 0.2, 1.0};
+
+
+#define DOT_RADIUS 1.0
+
+- (void)drawDotAtPoint:(CGPoint)p inContext:(CGContextRef)context
+{
+    UIGraphicsPushContext(context);
+    CGContextSetFillColor(context, darkRedColorValues);
+    CGContextSetStrokeColor(context, darkRedColorValues);
+    CGContextBeginPath(context);
+    CGContextAddArc(context, p.x, p.y, DOT_RADIUS, 0, 2*M_PI, YES); // 360 degree (0 to 2pi) arc
+    CGContextStrokePath(context);
+    UIGraphicsPopContext();
+}
+
+
+- (void)drawLineBetweenPointA:(CGPoint)a andB:(CGPoint)b inContext:(CGContextRef)context
+{
+    UIGraphicsPushContext(context);
+    CGContextSetStrokeColor(context, darkRedColorValues);
+    
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, a.x, a.y);
+    CGContextAddLineToPoint(context, b.x, b.y);
+    CGContextStrokePath(context);
+    UIGraphicsPopContext();
+}
+
+
+// For every pixel on the screen, figure out it's "value", evaluate it, and then
+// convert that value back to the coordinate system
+//
+// The arithmetic here is counter-intuitive since the X coordinates increase from
+// left to right, while the Y coordinates decrease from top to bottom.
+// 
+// We loop over the X values of the currentPoint (x,y struct) and store the 
+// pixel value we get back in the Y value of currentPoint.
+
+- (void) plotGraph
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+	
+    CGPoint currentPoint;   // current loop and result
+    CGPoint priorPoint;     // prior point for drawing a line
+    BOOL validPriorPoint;   // was a prior point set
+
+	for (currentPoint.x = 0; currentPoint.x < self.bounds.size.width; currentPoint.x++) {
+        CGContextBeginPath(context);
+        double xValue = (currentPoint.x - self.origin.x) / self.scale;
+        double yValue = [self.dataSource evaluateAtX:xValue forGraphView:self];
+        currentPoint.y = self.origin.y - (yValue * self.scale);
+        
+        if ([self.dataSource drawLinesForGraphView:self] && validPriorPoint) {
+            [self drawLineBetweenPointA:priorPoint andB:currentPoint inContext:context];
+        } else {
+            [self drawDotAtPoint:currentPoint inContext:context];
+        }
+        priorPoint = currentPoint;
+        validPriorPoint = YES;        
+    }
+}
+
 
 - (void)drawRect:(CGRect)rect
 {
     [AxesDrawer drawAxesInRect:self.bounds
                  originAtPoint:self.origin
                          scale:self.scale];
-    
-    // TODO: Draw Graph Points
+
+    [self plotGraph];
 }
 
 @end

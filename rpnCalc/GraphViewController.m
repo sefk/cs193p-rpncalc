@@ -11,8 +11,9 @@
 #import "rpnCalcBrain.h"
 
 @interface GraphViewController () <GraphViewDataSource>
+@property (nonatomic, weak) IBOutlet UILabel *   programDescriptionLabel;
+@property (nonatomic, weak) IBOutlet UISwitch *  lineModeSwitch;
 @property (nonatomic, weak) IBOutlet GraphView * graphView;
-@property (nonatomic, weak) IBOutlet UILabel *programDescriptionLabel;
 @end
 
 
@@ -21,12 +22,18 @@
 // Public Properties
 
 @synthesize program = _program;
+
+
+// Private Properties
+
 @synthesize programDescriptionLabel = _programDescriptionLabel;
 
-- (void)setProgram:(id)program
-{
-    _program = program;
+@synthesize lineModeSwitch = _lineModeSwitch;
+
+- (IBAction)lineModeSwitchAction {
+    [self.graphView setNeedsDisplay];
 }
+
 
 @synthesize graphView = _graphView;
 - (void)setGraphView:(GraphView *)graphView
@@ -58,6 +65,13 @@
     
     return yValue;
 }
+
+
+- (BOOL) drawLinesForGraphView:(GraphView *)sender
+{
+    return self.lineModeSwitch.on;
+}
+
 
 - (void) saveDataToPermanentStore
 {
@@ -101,10 +115,9 @@
 - (void)viewDidUnload
 {
     self.graphView = nil;
-    [self setProgramDescriptionLabel:nil];
     self.programDescriptionLabel = nil;
+    
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

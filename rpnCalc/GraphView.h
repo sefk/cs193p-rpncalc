@@ -12,8 +12,8 @@
 
 
 @protocol GraphViewDataSource
-- (double)     evaluateAtX:(double)xValue
-              forGraphView:(GraphView *)sender;
+- (double) evaluateAtX:(double)xValue forGraphView:(GraphView *)sender;
+- (BOOL) drawLinesForGraphView:(GraphView *)sender;
 @end
 
 

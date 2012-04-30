@@ -68,8 +68,9 @@
     NSNumber * numObj;
     numObj = [vars objectForKey:var];
     if (!numObj) {
-        NSLog(@"brain: assuming \"%@\" is a variable, but not found\n", var);
         // result already 0, and that's OK for the var not found case
+        // suppress this log for now
+        // NSLog(@"brain: assuming \"%@\" is a variable, but not found\n", var);
     }
     return numObj;
 }
