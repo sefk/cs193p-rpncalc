@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8618B36D154DE02800792251 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8618B36C154DE02800792251 /* GraphViewController.m */; };
 		866CB89B1549C16A002C298C /* rpnCalcVariableValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 866CB89A1549C16A002C298C /* rpnCalcVariableValues.m */; };
 		8683C6791538C5B2004DE0A0 /* rpnCalcBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8683C6781538C5B2004DE0A0 /* rpnCalcBrain.m */; };
 		86981F0E1538B9E40055EC7D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F0D1538B9E40055EC7D /* UIKit.framework */; };
@@ -17,12 +18,14 @@
 		86981F1E1538B9E40055EC7D /* rpnCalcAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86981F1D1538B9E40055EC7D /* rpnCalcAppDelegate.m */; };
 		86981F211538B9E40055EC7D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86981F1F1538B9E40055EC7D /* MainStoryboard.storyboard */; };
 		86981F241538B9E40055EC7D /* rpnCalcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86981F231538B9E40055EC7D /* rpnCalcViewController.m */; };
+		86DF3F65154B18FD001F9F7D /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DF3F64154B18FD001F9F7D /* GraphView.m */; };
 		86E56F0315450D9D00380480 /* rpnCalcOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E56F0215450D9D00380480 /* rpnCalcOperator.m */; };
 		86F2DA4B1549DCFF00689699 /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA4A1549DCFF00689699 /* AxesDrawer.m */; };
-		86F2DA4F1549DDE200689699 /* rpnCalcGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA4E1549DDE200689699 /* rpnCalcGraphViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8618B36B154DE02800792251 /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
+		8618B36C154DE02800792251 /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 		866CB8991549C16A002C298C /* rpnCalcVariableValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcVariableValues.h; sourceTree = "<group>"; };
 		866CB89A1549C16A002C298C /* rpnCalcVariableValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcVariableValues.m; sourceTree = "<group>"; };
 		8683C6771538C5B2004DE0A0 /* rpnCalcBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcBrain.h; sourceTree = "<group>"; };
@@ -40,12 +43,12 @@
 		86981F201538B9E40055EC7D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		86981F221538B9E40055EC7D /* rpnCalcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rpnCalcViewController.h; sourceTree = "<group>"; };
 		86981F231538B9E40055EC7D /* rpnCalcViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rpnCalcViewController.m; sourceTree = "<group>"; };
+		86DF3F63154B18FD001F9F7D /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
+		86DF3F64154B18FD001F9F7D /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
 		86E56F0115450D9D00380480 /* rpnCalcOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcOperator.h; sourceTree = "<group>"; };
 		86E56F0215450D9D00380480 /* rpnCalcOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcOperator.m; sourceTree = "<group>"; };
 		86F2DA491549DCFF00689699 /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
 		86F2DA4A1549DCFF00689699 /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
-		86F2DA4D1549DDE200689699 /* rpnCalcGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rpnCalcGraphViewController.h; sourceTree = "<group>"; };
-		86F2DA4E1549DDE200689699 /* rpnCalcGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rpnCalcGraphViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +101,10 @@
 				866CB89A1549C16A002C298C /* rpnCalcVariableValues.m */,
 				86F2DA491549DCFF00689699 /* AxesDrawer.h */,
 				86F2DA4A1549DCFF00689699 /* AxesDrawer.m */,
-				86F2DA4D1549DDE200689699 /* rpnCalcGraphViewController.h */,
-				86F2DA4E1549DDE200689699 /* rpnCalcGraphViewController.m */,
+				8618B36B154DE02800792251 /* GraphViewController.h */,
+				8618B36C154DE02800792251 /* GraphViewController.m */,
+				86DF3F63154B18FD001F9F7D /* GraphView.h */,
+				86DF3F64154B18FD001F9F7D /* GraphView.m */,
 				86E56F0115450D9D00380480 /* rpnCalcOperator.h */,
 				86E56F0215450D9D00380480 /* rpnCalcOperator.m */,
 				86981F1C1538B9E40055EC7D /* rpnCalcAppDelegate.h */,
@@ -193,7 +198,8 @@
 				86E56F0315450D9D00380480 /* rpnCalcOperator.m in Sources */,
 				866CB89B1549C16A002C298C /* rpnCalcVariableValues.m in Sources */,
 				86F2DA4B1549DCFF00689699 /* AxesDrawer.m in Sources */,
-				86F2DA4F1549DDE200689699 /* rpnCalcGraphViewController.m in Sources */,
+				86DF3F65154B18FD001F9F7D /* GraphView.m in Sources */,
+				8618B36D154DE02800792251 /* GraphViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

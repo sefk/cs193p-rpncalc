@@ -9,6 +9,7 @@
 #import "rpnCalcViewController.h"
 #import "rpnCalcBrain.h"
 #import "rpnCalcVariableValues.h"
+#import "GraphViewController.h"
 
 @interface rpnCalcViewController ()
 @property (nonatomic) BOOL entering;
@@ -160,6 +161,20 @@
     } else {
         [self.brain pushVariable:var];
         self.displayCurrent.text = var;
+    }
+}
+
+
+//
+// Bring up Graph
+//
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShowGraph"]) {
+        
+        [segue.destinationViewController setProgram:self.brain.program];
     }
 }
 

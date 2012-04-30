@@ -1,5 +1,5 @@
 //
-//  rpnCalcGraphViewController.h
+//  GraphViewController.h
 //  rpnCalc
 //
 //  Created by Sef Kloninger on 4/26/12.
@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphView.h"
 
-@interface rpnCalcGraphViewController : UIViewController
+@interface GraphViewController : UIViewController
+
+@property (nonatomic, strong) id program;
+
+
 
 @end
