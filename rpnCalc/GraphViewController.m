@@ -55,9 +55,14 @@
     return yValue;
 }
 
+- (void) saveDataToPermanentStore
+{
+    // TODO - write scale, origin to NSUserDefaults
+}
 
 
-// Boilerplate Stuff
+
+// View Bringup and Teardown
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -79,11 +84,21 @@
     [self.programDescriptionLabel setNeedsDisplay];
     
     [self.graphView setNeedsDisplay];
+
+    [super viewWillAppear:animated]
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self saveDataToPermanentStore];
+    [super viewWillDisappear:animated]
 }
 
 - (void)viewDidUnload
 {
+    self.graphView = nil;
     [self setProgramDescriptionLabel:nil];
+    self.programDescriptionLabel = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
