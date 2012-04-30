@@ -33,7 +33,11 @@
 {
     _graphView = graphView;
 
-    // TODO - gesture recognizers
+    // Pinching changes the scale
+    [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
+
+    // Panning moves the origin
+    [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pan:)]];
     
     self.graphView.dataSource = self;
 }

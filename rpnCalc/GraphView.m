@@ -24,33 +24,39 @@
 - (CGPoint)origin
 {
     if (!self.originHasBeenSet) {
-        _origin.x = 10;
-        _origin.y = 10;
+        _origin.x = self.bounds.size.width / 2;
+        _origin.y = self.bounds.size.height / 2;
     }
     return _origin;
-    [self setNeedsDisplay];   
 }
 - (void)setOrigin:(CGPoint)newOrigin
 {
     _origin.x = newOrigin.x;
     _origin.y = newOrigin.y;
     self.originHasBeenSet = YES;
-    
+    [self setNeedsDisplay];     
+}
+- (void)adjustOrigin:(CGPoint)offset
+{
+    _origin.x += offset.x;
+    _origin.y += offset.y;
+    self.originHasBeenSet = YES;
+    [self setNeedsDisplay];
 }
 
 @synthesize scaleHasBeenSet = _scaleHasBeenSet;
 @synthesize scale = _scale;
 - (CGFloat)scale {
     if (!self.scaleHasBeenSet) {
-        _scale = 1.0;
+        _scale = 20.0;
     }
     return _scale;
-    [self setNeedsDisplay];
 }
 - (void)setScale:(CGFloat)newScale
 {
     _scale = newScale;
-    self.originHasBeenSet = YES;
+    self.scaleHasBeenSet = YES;
+    [self setNeedsDisplay];
 }
 
 
@@ -87,6 +93,30 @@
     CGContextStrokePath(context);
     UIGraphicsPopContext();
 }
+
+
+// Gestures
+
+- (void)pinch:(UIPinchGestureRecognizer *)gesture
+{
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        self.scale *= gesture.scale; // adjust our scale
+        gesture.scale = 1;           // reset gestures scale to 1 (so future changes are incremental, not cumulative)
+    }
+}
+
+- (void)pan:(UIPanGestureRecognizer *)gesture
+{
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+//        CGPoint translation = [gesture translationInView:[self superview]];
+        CGPoint translation = [gesture translationInView:self];
+        [self adjustOrigin:translation];
+        [gesture setTranslation:CGPointZero inView:self];
+    }
+}
+
 
 
 - (void)drawRect:(CGRect)rect

@@ -23,4 +23,7 @@
 @property (nonatomic) CGFloat scale;
 @property (nonatomic, weak) IBOutlet id <GraphViewDataSource> dataSource;
 
+- (void)pinch:(UIPinchGestureRecognizer *)gesture;
+- (void)pan:(UIPinchGestureRecognizer *)gesture;
+
 @end
