@@ -450,7 +450,7 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="PuN-4P-w0e">
                                 <rect key="frame" x="230" y="9" width="79" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="lineModeSwitchAction" destination="35S-e4-exn" eventType="valueChanged" id="uMx-Mz-kFN"/>
                                 </connections>
