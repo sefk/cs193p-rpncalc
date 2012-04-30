@@ -46,6 +46,11 @@
     // Panning moves the origin
     [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pan:)]];
     
+    // Double-tap sets a new origin
+    UITapGestureRecognizer * gestureRec = [[UITapGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(doubleTap:)];
+    gestureRec.numberOfTapsRequired = 2;
+    [self.graphView addGestureRecognizer:gestureRec];
+    
     self.graphView.dataSource = self;
 }
 

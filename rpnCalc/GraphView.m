@@ -100,11 +100,18 @@
 {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
-//        CGPoint translation = [gesture translationInView:[self superview]];
         CGPoint translation = [gesture translationInView:self];
         [self adjustOrigin:translation];
         [gesture setTranslation:CGPointZero inView:self];
     }
+}
+
+- (void)doubleTap:(UITapGestureRecognizer *)gesture 
+{     
+    if (gesture.state == UIGestureRecognizerStateEnded) {  
+        CGPoint tapLocation = [gesture locationInView:self];
+        self.origin = tapLocation;
+    } 
 }
 
 
