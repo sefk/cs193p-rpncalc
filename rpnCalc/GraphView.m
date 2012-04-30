@@ -7,25 +7,57 @@
 //
 
 #import "GraphView.h"
+#import "AxesDrawer.h"
+
+@interface GraphView()
+@property (nonatomic) BOOL originHasBeenSet;
+@property (nonatomic) BOOL scaleHasBeenSet;
+@end
 
 
 @implementation GraphView
 
-@synthesize dataSource = _dataSource;
+// Origin and Scale
 
+@synthesize originHasBeenSet = _originHasBeenSet;
 @synthesize origin = _origin;
-- (CGPoint)origin {
-    // TODO - set default
+- (CGPoint)origin
+{
+    if (!self.originHasBeenSet) {
+        _origin.x = 10;
+        _origin.y = 10;
+    }
     return _origin;
     [self setNeedsDisplay];   
 }
+- (void)setOrigin:(CGPoint)newOrigin
+{
+    _origin.x = newOrigin.x;
+    _origin.y = newOrigin.y;
+    self.originHasBeenSet = YES;
+    
+}
 
+@synthesize scaleHasBeenSet = _scaleHasBeenSet;
 @synthesize scale = _scale;
 - (CGFloat)scale {
-    // TODO - set default
+    if (!self.scaleHasBeenSet) {
+        _scale = 1.0;
+    }
     return _scale;
     [self setNeedsDisplay];
 }
+- (void)setScale:(CGFloat)newScale
+{
+    _scale = newScale;
+    self.originHasBeenSet = YES;
+}
+
+
+
+@synthesize dataSource = _dataSource;
+
+
 
 - (void)setup
 {
@@ -59,7 +91,9 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    // TODO: Draw Axes
+    [AxesDrawer drawAxesInRect:self.bounds
+                 originAtPoint:self.origin
+                         scale:self.scale];
     
     // TODO: Draw Graph Points
 }
