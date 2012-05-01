@@ -15,6 +15,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *   programDescriptionLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *  lineModeSwitch;
 @property (nonatomic, weak) IBOutlet GraphView * graphView;
+@property (nonatomic, weak) IBOutlet UIToolbar * topToolbar;
 @end
 
 
@@ -61,6 +62,8 @@
     self.graphView.dataSource = self;
 }
 
+@synthesize topToolbar = _topToolbar;
+
 
 
 // Data Source Protocol
@@ -78,6 +81,25 @@
     return yValue;
 }
 
+
+// Toolbar Button Protocol
+
+@synthesize barButtonItem = _barButtonItem;
+
+- (void) setBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    if (_barButtonItem != barButtonItem) {
+        NSMutableArray * newItems = [self.topToolbar.items mutableCopy];
+        if (_barButtonItem) [newItems removeObject:_barButtonItem];
+        if (barButtonItem)  [newItems insertObject:barButtonItem atIndex:0];  //left
+        self.topToolbar.items = newItems;
+        _barButtonItem = barButtonItem;
+    }
+    
+}
+
+
+// OTHERS
 
 - (BOOL) drawLinesForGraphView:(GraphView *)sender
 {

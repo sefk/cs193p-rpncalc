@@ -10,6 +10,7 @@
 #import "CalculatorBrain.h"
 #import "VariableValues.h"
 #import "GraphViewController.h"
+#import "ToolbarButtonPresenterProtocol.h"
 
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL entering;
@@ -215,15 +216,46 @@
     self.splitViewController.delegate = self;
 }
 
+// Idiom to get the detail for split view.  if iPhone, returns nil.
+- (id <ToolbarButtonPresenter>) toolbarButtonPresenter
+{
+    id detailVC = [self.splitViewController.viewControllers lastObject];
+    if (![detailVC conformsToProtocol:@protocol(ToolbarButtonPresenter)]) {
+        detailVC = nil;
+    }
+    return detailVC;
+}
+
 - (BOOL)splitViewController:(UISplitViewController *)svc
    shouldHideViewController:(UIViewController *)vc
               inOrientation:(UIInterfaceOrientation)orientation
 {
-    // never hide
-    return NO;
+    id detailVC = [self toolbarButtonPresenter];
+    if (!detailVC) {
+        // iPhone
+        return NO;
+    } else {
+        // iPad
+        return UIInterfaceOrientationIsPortrait(orientation);
+    }
 }
 
 
+- (void) splitViewController:(UISplitViewController *)svc
+      willHideViewController:(UIViewController *)aViewController
+           withBarButtonItem:(UIBarButtonItem *)barButtonItem
+        forPopoverController:(UIPopoverController *)pc
+{
+    barButtonItem.title = @"Calculator";
+    [self toolbarButtonPresenter].barButtonItem = barButtonItem;
+} 
+
+- (void)splitViewController:(UISplitViewController *)svc 
+     willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    [self toolbarButtonPresenter].barButtonItem = nil;
+}
 
 
 
