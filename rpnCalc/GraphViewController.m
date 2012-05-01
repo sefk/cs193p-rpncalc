@@ -65,7 +65,6 @@
 @synthesize topToolbar = _topToolbar;
 
 
-
 // Data Source Protocol
 
 - (double) evaluateAtX:(double)xValue
@@ -79,6 +78,16 @@
     yValue = [CalculatorBrain runProgram:self.program usingVariableDict:vars.dict];
     
     return yValue;
+}
+
+- (BOOL) drawLinesForGraphView:(GraphView *)sender
+{
+    return self.lineModeSwitch.on;
+}
+
+- (BOOL) validProgram
+{
+    return (self.program != nil);
 }
 
 
@@ -100,12 +109,6 @@
 
 
 // OTHERS
-
-- (BOOL) drawLinesForGraphView:(GraphView *)sender
-{
-    return self.lineModeSwitch.on;
-}
-
 
 - (void) saveDataToPermanentStore
 {

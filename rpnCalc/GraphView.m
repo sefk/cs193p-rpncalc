@@ -168,8 +168,10 @@ const CGFloat darkRedColorValues[] = {1.0, 0.2, 0.2, 1.0};
         double yValue = [self.dataSource evaluateAtX:xValue forGraphView:self];
         currentPoint.y = self.origin.y - (yValue * self.scale);
         
-        if ([self.dataSource drawLinesForGraphView:self] && validPriorPoint) {
-            [self drawLineBetweenPointA:priorPoint andB:currentPoint inContext:context];
+        if ([self.dataSource drawLinesForGraphView:self]) {
+            if (validPriorPoint) {
+                [self drawLineBetweenPointA:priorPoint andB:currentPoint inContext:context];
+            } // else don't draw just yet, miss a point
         } else {
             [self drawDotAtPoint:currentPoint inContext:context];
         }
@@ -185,7 +187,9 @@ const CGFloat darkRedColorValues[] = {1.0, 0.2, 0.2, 1.0};
                  originAtPoint:self.origin
                          scale:self.scale];
 
-    [self plotGraph];
+    if ([self.dataSource validProgram]) {
+        [self plotGraph];
+    }
 }
 
 @end
