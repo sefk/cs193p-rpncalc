@@ -15,3 +15,7 @@ TODO
   with that, which is a little presumptuous.
 - Same with divide-by-zero case.  Currently just evals to zero.  Infinity makes more
   sense, error makes even more sense.
+
+
+Icon courtesy of PSD Graphics (http://www.psdgraphics.com/), free for non-commercial 
+use.  Thanks guys!
