@@ -412,7 +412,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="35S-e4-exn" kind="push" identifier="ShowGraph" id="bkV-g7-xmf"/>
+                                    <action selector="graphPress" destination="2" eventType="touchUpInside" id="lrl-I1-MlF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -422,6 +422,7 @@
                     <connections>
                         <outlet property="displayCurrent" destination="HZu-mN-Ka8" id="8hE-3Q-lUe"/>
                         <outlet property="displayLog" destination="l3v-7E-6qf" id="q5x-lO-xeI"/>
+                        <segue destination="35S-e4-exn" kind="push" identifier="ShowGraph" id="Kw7-gY-6fk"/>
                     </connections>
                 </viewController>
             </objects>

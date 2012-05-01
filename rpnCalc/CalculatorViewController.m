@@ -166,14 +166,29 @@
 
 
 //
-// Bring up Graph
+// iPad:   Send program to graph pane
+// iPhone: Bring up Graph by Segue
 //
+
+- (IBAction)graphPress 
+{  
+    id detailController = [self.splitViewController.viewControllers lastObject];
+    if ([detailController isKindOfClass:[GraphViewController class]])    
+        // (and not nil of course...)
+    {
+        // iPad -- update program in graph in right (detail) pane
+        GraphViewController * detailGraphViewController = detailController;
+        [detailGraphViewController setProgram:self.brain.program];
+    } else {
+        // iPhone -- segue to Graph
+        [self performSegueWithIdentifier:@"ShowGraph" sender:self];
+    }
+}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowGraph"]) {
-        
         [segue.destinationViewController setProgram:self.brain.program];
     }
 }
@@ -183,4 +198,33 @@
     [self setDisplayLog:nil];
     [super viewDidUnload];
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+
+//
+// Split View Delegate 
+//
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.splitViewController.delegate = self;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc
+   shouldHideViewController:(UIViewController *)vc
+              inOrientation:(UIInterfaceOrientation)orientation
+{
+    // never hide
+    return NO;
+}
+
+
+
+
+
 @end

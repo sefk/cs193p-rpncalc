@@ -24,6 +24,12 @@
 
 @synthesize program = _program;
 
+- (void)setProgram:(id)program
+{
+    _program = program;
+    [self.graphView setNeedsDisplay];
+}
+
 
 // Private Properties
 
