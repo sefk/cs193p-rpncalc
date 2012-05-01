@@ -16,7 +16,6 @@
 @property (nonatomic) BOOL entering;
 @property (nonatomic, strong) CalculatorBrain * brain;
 @property (nonatomic, strong) VariableValues *  variableValues;
-
 @end
 
 
@@ -248,6 +247,9 @@
 {
     barButtonItem.title = @"Calculator";
     [self toolbarButtonPresenter].barButtonItem = barButtonItem;
+    
+    // can't get popunder working - 5/01
+    //self.myPopoverController = pc;
 } 
 
 - (void)splitViewController:(UISplitViewController *)svc 
@@ -255,6 +257,8 @@
   invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     [self toolbarButtonPresenter].barButtonItem = nil;
+    // can't get popunder working - 5/01
+    //self.myPopoverController = nil;
 }
 
 
