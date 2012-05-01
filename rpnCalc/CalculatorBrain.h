@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "rpnCalcVariableValues.h"
+#import "VariableValues.h"
 
 
-@interface rpnCalcBrain : NSObject
+@interface CalculatorBrain : NSObject
 
 - (void)        pushOperand:(double)num;
 - (void)        pushVariable:(NSString *)var;

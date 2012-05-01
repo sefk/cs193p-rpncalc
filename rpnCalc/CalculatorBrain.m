@@ -6,17 +6,17 @@
 //  Copyright (c) 2012 Peek 222. All rights reserved.
 //
 
-#import "rpnCalcBrain.h"
-#import "rpnCalcOperator.h"
-#import "rpnCalcVariableValues.h"
+#import "CalculatorBrain.h"
+#import "Operator.h"
+#import "VariableValues.h"
 
-@interface rpnCalcBrain()
+@interface CalculatorBrain()
 
 @property (nonatomic, strong) NSMutableArray *programStack;
 
 @end
 
-@implementation rpnCalcBrain
+@implementation CalculatorBrain
 
 
 //
@@ -47,7 +47,7 @@
     if (! [operatorOrOperand isKindOfClass:[NSString class]]) return NO;
     
     // all operators are a key in the operationsDict.  Look up to see if it's there
-    if (! [[[rpnCalcOperator class] setWithAllOperatorStrings] containsObject:operatorOrOperand]) return NO;
+    if (! [[[Operator class] setWithAllOperatorStrings] containsObject:operatorOrOperand]) return NO;
     
     // must have been found in the operationsDict.  Yay.
     return YES;
@@ -99,8 +99,8 @@
         NSNumber * operand1num, * operand2num;
         
         NSString * operatorString = topOfStack;    // a bit redundant but more readable        
-        rpnCalcOperator * myCalcOperator = [rpnCalcOperator operatorFromOpname:operatorString];
-        int expectedOperands = myCalcOperator.needsOperands;        
+        Operator * myOperator = [Operator operatorFromOpname:operatorString];
+        int expectedOperands = myOperator.needsOperands;        
         
         // don't need to check if we have enough operands here.  If there are 
         // two few, we assume zero and run with it
@@ -108,12 +108,12 @@
         switch (expectedOperands) {
             case 1: // unary op
                 operand1num = [[self class] popAndEvaluate:stack usingVariableDict:vars];
-                result = [myCalcOperator evaluateOperand:operand1num]; 
+                result = [myOperator evaluateOperand:operand1num]; 
                 break;
             case 2: // binary op
                 operand1num = [[self class] popAndEvaluate:stack usingVariableDict:vars];
                 operand2num = [[self class] popAndEvaluate:stack usingVariableDict:vars];
-                result = [myCalcOperator evaluateOperand:operand2num withOperand:operand1num];
+                result = [myOperator evaluateOperand:operand2num withOperand:operand1num];
                 break;
             default:
                 NSLog(@"brain: evaluating operator \"%@\", didn't expect %d operands", operatorString, expectedOperands);
@@ -207,7 +207,7 @@
 
     
 + (NSString *) describeOperand:(NSMutableArray *)stack 
-        inTheContextOfOperator:(rpnCalcOperator *)callerCalcOperator
+        inTheContextOfOperator:(Operator *)callerCalcOperator
 {
     NSString * result;
     
@@ -226,8 +226,8 @@
         NSString * operand1Str, * operand2Str;
 
         NSString * operatorString = topOfStack;    // a bit redundant but more readable        
-        rpnCalcOperator * myCalcOperator = [rpnCalcOperator operatorFromOpname:operatorString];
-        int expectedOperands = myCalcOperator.needsOperands;
+        Operator * myOperator = [Operator operatorFromOpname:operatorString];
+        int expectedOperands = myOperator.needsOperands;
         
         // don't need to check if we have enough operands here.  If there are 
         // two few, we assume zero and run with it.
@@ -235,16 +235,16 @@
         switch (expectedOperands) {
             case 1: // Unary
                 operand1Str = [[self class] describeOperand:stack 
-                                     inTheContextOfOperator:myCalcOperator];
-                result = [     myCalcOperator formatOperand:operand1Str
+                                     inTheContextOfOperator:myOperator];
+                result =          [myOperator formatOperand:operand1Str
                                        withinParentOperator:callerCalcOperator];
                 break;
             case 2: // Binary
                 operand1Str = [[self class] describeOperand:stack
-                                     inTheContextOfOperator:myCalcOperator];
+                                     inTheContextOfOperator:myOperator];
                 operand2Str = [[self class] describeOperand:stack 
-                                     inTheContextOfOperator:myCalcOperator];
-                result =      [myCalcOperator formatOperand:operand2Str
+                                     inTheContextOfOperator:myOperator];
+                result =          [myOperator formatOperand:operand2Str
                                                 withOperand:operand1Str
                                        withinParentOperator:callerCalcOperator];
                 break;

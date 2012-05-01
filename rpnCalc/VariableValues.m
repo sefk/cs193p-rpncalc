@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Peek 222 Software. All rights reserved.
 //
 
-#import "rpnCalcVariableValues.h"
+#import "VariableValues.h"
 
-@implementation rpnCalcVariableValues
+@implementation VariableValues
 
 @synthesize dict = _dict;
 

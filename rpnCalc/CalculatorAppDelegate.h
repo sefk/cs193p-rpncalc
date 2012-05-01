@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface rpnCalcAppDelegate : UIResponder <UIApplicationDelegate>
+@interface CalculatorAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -6,20 +6,20 @@
 //  Copyright (c) 2012 Peek 222. All rights reserved.
 //
 
-#import "rpnCalcViewController.h"
-#import "rpnCalcBrain.h"
-#import "rpnCalcVariableValues.h"
+#import "CalculatorViewController.h"
+#import "CalculatorBrain.h"
+#import "VariableValues.h"
 #import "GraphViewController.h"
 
-@interface rpnCalcViewController ()
+@interface CalculatorViewController ()
 @property (nonatomic) BOOL entering;
-@property (nonatomic, strong) rpnCalcBrain * brain;
-@property (nonatomic, strong) rpnCalcVariableValues * variableValues;
+@property (nonatomic, strong) CalculatorBrain * brain;
+@property (nonatomic, strong) VariableValues *  variableValues;
 
 @end
 
 
-@implementation rpnCalcViewController
+@implementation CalculatorViewController
 
 @synthesize entering = _entering;
 
@@ -28,19 +28,19 @@
 
 @synthesize brain = _brain;
 
-- (rpnCalcBrain *) brain
+- (CalculatorBrain *) brain
 {
-    if (!_brain) _brain = [[rpnCalcBrain alloc] init];
+    if (!_brain) _brain = [[CalculatorBrain alloc] init];
     return _brain;
 }
 
 
 @synthesize variableValues = _variableValues;
 
-- (rpnCalcVariableValues *) variableValues
+- (VariableValues *) variableValues
 {
     if (!_variableValues) {
-        _variableValues = [[rpnCalcVariableValues alloc] init];
+        _variableValues = [[VariableValues alloc] init];
     }
     return _variableValues;
 }

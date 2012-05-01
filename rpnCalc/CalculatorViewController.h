@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface rpnCalcViewController : UIViewController
+@interface CalculatorViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *displayCurrent;
 @property (weak, nonatomic) IBOutlet UILabel *displayLog;

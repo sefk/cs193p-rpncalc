@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Peek 222. All rights reserved.
 //
 
-#import "rpnCalcAppDelegate.h"
+#import "CalculatorAppDelegate.h"
 
-@implementation rpnCalcAppDelegate
+@implementation CalculatorAppDelegate
 
 @synthesize window = _window;
 

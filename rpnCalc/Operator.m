@@ -7,9 +7,9 @@
 //  Copyright (c) 2012 Peek 222 Software. All rights reserved.
 //
 
-#import "rpnCalcOperator.h"
+#import "Operator.h"
 
-@implementation rpnCalcOperator
+@implementation Operator
 
 //
 // Setup Stuff
@@ -44,10 +44,10 @@
 // Factory.  Returns an operator class set up with all you need for that 
 // particular operator.  Lots of static construction junk in here.
 
-+ (rpnCalcOperator *) operatorFromOpname:(NSString *)opname
++ (Operator *) operatorFromOpname:(NSString *)opname
 {
     // TODO: add memoization for efficiency
-    return [[rpnCalcOperator alloc] initWithName:opname];
+    return [[Operator alloc] initWithName:opname];
 }
 
 - (id) initWithName:(NSString *)opname
@@ -148,7 +148,7 @@
 //
 
 - (NSString *) formatOperand:(NSString *)operandStr
-        withinParentOperator:(rpnCalcOperator *)parent
+        withinParentOperator:(Operator *)parent
 {
     NSString * resultStr;
     
@@ -172,7 +172,7 @@
 
 - (NSString *) formatOperand:(id)operand1
                  withOperand:(id)operand2
-         withinParentOperator:(rpnCalcOperator *)parent
+         withinParentOperator:(Operator *)parent
 {
     NSString * resultStr;
     

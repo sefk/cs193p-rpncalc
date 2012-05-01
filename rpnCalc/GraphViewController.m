@@ -8,7 +8,8 @@
 
 #import "GraphViewController.h"
 #import "GraphView.h"
-#import "rpnCalcBrain.h"
+#import "CalculatorBrain.h"
+#import "VariableValues.h"
 
 @interface GraphViewController () <GraphViewDataSource>
 @property (nonatomic, weak) IBOutlet UILabel *   programDescriptionLabel;
@@ -64,9 +65,9 @@
     float yValue;
     NSNumber * xNum = [[NSNumber alloc] initWithDouble:xValue];
     
-    rpnCalcVariableValues * vars = [[rpnCalcVariableValues alloc] init];
+    VariableValues * vars = [[VariableValues alloc] init];
     [vars.dict setValue:xNum forKey:@"X"];
-    yValue = [rpnCalcBrain runProgram:self.program usingVariableDict:vars.dict];
+    yValue = [CalculatorBrain runProgram:self.program usingVariableDict:vars.dict];
     
     return yValue;
 }
@@ -103,7 +104,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.programDescriptionLabel.text = [rpnCalcBrain describeProgram:self.program];
+    self.programDescriptionLabel.text = [CalculatorBrain describeProgram:self.program];
     [self.programDescriptionLabel setNeedsDisplay];
     
     [self.graphView setNeedsDisplay];

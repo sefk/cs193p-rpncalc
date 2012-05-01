@@ -13,7 +13,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface rpnCalcOperator : NSObject
+@interface Operator : NSObject
 
 @property (nonatomic, strong) NSString *  name;
 @property (nonatomic)         int         needsOperands;
@@ -33,15 +33,15 @@
 // to decide whether we need parenthesis or not.
 
 - (NSString *) formatOperand:(NSString *)operandStr
-        withinParentOperator:(rpnCalcOperator *)parent;
+        withinParentOperator:(Operator *)parent;
 
 - (NSString *) formatOperand:(NSString *)operand1Str
                  withOperand:(NSString *)operand2Str
-         withinParentOperator:(rpnCalcOperator *)parent;
+         withinParentOperator:(Operator *)parent;
 
 // CLASS METHODS
 
-+ (rpnCalcOperator *) operatorFromOpname:(NSString *)opname;
++ (Operator *) operatorFromOpname:(NSString *)opname;
 
 + (NSSet *) setWithAllOperatorStrings;
 

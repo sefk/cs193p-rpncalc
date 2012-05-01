@@ -6,11 +6,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
     </dependencies>
     <scenes>
-        <!--Rpn Calc View Controller - rpnCalc-->
+        <!--Calculator View Controller - rpnCalc-->
         <scene sceneID="5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <viewController id="2" customClass="rpnCalcViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="CalculatorViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -489,6 +489,13 @@
         </scene>
     </scenes>
     <classes>
+        <class className="CalculatorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="displayCurrent" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="displayLog" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="GraphView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphView.h"/>
             <relationships>
@@ -501,13 +508,6 @@
                 <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
                 <relationship kind="outlet" name="lineModeSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="programDescriptionLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="rpnCalcViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/rpnCalcViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="displayCurrent" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="displayLog" candidateClass="UILabel"/>
             </relationships>
         </class>
     </classes>

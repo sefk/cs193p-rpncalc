@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface rpnCalcVariableValues : NSObject
+@interface VariableValues : NSObject
 
 @property (nonatomic, strong) NSMutableDictionary * dict;
 
