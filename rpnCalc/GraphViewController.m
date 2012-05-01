@@ -116,9 +116,14 @@
 
 - (void) saveDataToPermanentStore
 {
-    // TODO - write scale, origin to NSUserDefaults
+    NSUserDefaults * defaults;
+    if (self.graphView.scaleHasBeenSet || self.graphView.originHasBeenSet) {
+        defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setFloat:self.graphView.origin.x forKey:@"origin.x"];
+        [defaults setFloat:self.graphView.origin.y forKey:@"origin.y"];
+        [defaults setFloat:self.graphView.scale forKey:@"scale"];
+    }
 }
-
 
 
 // View Bringup and Teardown

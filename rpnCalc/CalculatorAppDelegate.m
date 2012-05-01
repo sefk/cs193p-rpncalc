@@ -14,6 +14,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Register the preference defaults early.
+    NSDictionary *appDefaults = [NSDictionary
+                                 dictionaryWithObject:[NSNumber numberWithInteger:20] forKey:@"scale"];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+    
     // Override point for customization after application launch.
     return YES;
 }

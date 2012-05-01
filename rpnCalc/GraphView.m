@@ -22,8 +22,17 @@
 - (CGPoint)origin
 {
     if (!self.originHasBeenSet) {
-        _origin.x = self.bounds.size.width / 2;
-        _origin.y = self.bounds.size.height / 2;
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        _origin.x = [defaults floatForKey:@"origin.x"];
+        _origin.y = [defaults floatForKey:@"origin.y"];
+        if (_origin.x == 0) {
+            // all hell breaks loose default case
+            _origin.x = self.bounds.size.width / 2;
+        }
+        if (_origin.y == 0) {
+            _origin.y = self.bounds.size.height / 2;
+        }
+        self.originHasBeenSet = YES;
     }
     return _origin;
 }
@@ -48,7 +57,13 @@
 @synthesize scale = _scale;
 - (CGFloat)scale {
     if (!self.scaleHasBeenSet) {
-        _scale = 20.0;
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        _scale = [defaults floatForKey:@"scale"];
+        if (_scale == 0) {
+            // all hell breaks loose default case
+            _scale = 20.0;
+        }
+        self.scaleHasBeenSet = YES;
     }
     return _scale;
 }
