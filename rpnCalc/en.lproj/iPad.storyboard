@@ -39,6 +39,8 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="41T-QP-fhH"/>
+                                    <barButtonItem style="plain" id="L7y-Tr-cm9"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="s9m-8j-Jni"/>
                                     <barButtonItem style="plain" id="S3v-EV-dNL">
                                         <switch key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="GQb-Dc-pQf">
                                             <rect key="frame" x="677" y="9" width="79" height="27"/>

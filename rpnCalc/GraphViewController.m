@@ -29,6 +29,10 @@
 {
     _program = program;
     [self.graphView setNeedsDisplay];
+    
+    [self showProgramDescription:[CalculatorBrain describeProgram:self.program]];
+    [self.programDescriptionLabel setNeedsDisplay];
+
 }
 
 
@@ -133,9 +137,32 @@
     [super viewDidLoad];
 }
 
+
+- (void)showProgramDescription:(NSString *)programDesc
+{
+    BOOL changed;
+    if (self.topToolbar) {
+        // iPad
+        NSMutableArray * items = [[self.topToolbar items] mutableCopy];
+        for (int i = 0; i < items.count; i++) {
+            UIBarButtonItem * b = [items objectAtIndex:i];
+            if (b.style == UIBarButtonItemStylePlain) {
+                [b setTitle:programDesc];
+                changed = YES;
+            }
+        }
+        if (changed) [self.topToolbar setItems:items];
+    }
+    else {
+        // iPhone
+        self.programDescriptionLabel.text = programDesc;
+        [self.programDescriptionLabel setNeedsDisplay];
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.programDescriptionLabel.text = [CalculatorBrain describeProgram:self.program];
+    [self showProgramDescription:[CalculatorBrain describeProgram:self.program]];
     [self.programDescriptionLabel setNeedsDisplay];
     
     [self.graphView setNeedsDisplay];
