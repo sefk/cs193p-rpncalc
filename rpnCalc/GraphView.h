@@ -20,6 +20,8 @@
 
 @interface GraphView : UIView
 
+@property (nonatomic) BOOL    originHasBeenSet;
+@property (nonatomic) BOOL    scaleHasBeenSet;
 @property (nonatomic) CGPoint origin;
 @property (nonatomic) CGFloat scale;
 @property (nonatomic, weak) IBOutlet id <GraphViewDataSource> dataSource;

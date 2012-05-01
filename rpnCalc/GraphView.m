@@ -10,8 +10,6 @@
 #import "AxesDrawer.h"
 
 @interface GraphView()
-@property (nonatomic) BOOL originHasBeenSet;
-@property (nonatomic) BOOL scaleHasBeenSet;
 @end
 
 
