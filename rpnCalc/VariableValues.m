@@ -1,5 +1,5 @@
 //
-//  rpnCalcVariableValues.m
+//  VariableValues.m
 //  rpnCalc
 //
 //  Created by Sef Kloninger on 4/26/12.

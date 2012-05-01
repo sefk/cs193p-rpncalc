@@ -1,5 +1,5 @@
 //
-//  rpnCalcOperator.h
+//  Operator.h
 //  
 //  Handle all the low level grungy stuff for particular operations.  
 //

@@ -1,5 +1,5 @@
 //
-//  rpnCalcOperator.m
+//  Operator.m
 //  
 //  Meat of operation handling.
 //

@@ -1,5 +1,5 @@
 //
-//  rpnCalcViewController.m
+//  CalculatorViewController.m
 //  rpnCalc
 //
 //  Created by Sef Kloninger on 4/13/12.

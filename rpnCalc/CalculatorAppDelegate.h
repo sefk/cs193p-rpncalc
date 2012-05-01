@@ -1,5 +1,5 @@
 //
-//  rpnCalcAppDelegate.h
+//  CalculatorAppDelegate.h
 //  rpnCalc
 //
 //  Created by Sef Kloninger on 4/13/12.

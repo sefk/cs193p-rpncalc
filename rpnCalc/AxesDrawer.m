@@ -1,6 +1,7 @@
 //
 //  AxesDrawer.m
-//  Calculator
+//  
+//  Draw axes for the calculator graph.  This code was provided all by Stanford University, not mine.
 //
 //  Created by CS193p Instructor.
 //  Copyright (c) 2011 Stanford University. All rights reserved.

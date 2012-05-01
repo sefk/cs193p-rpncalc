@@ -1,5 +1,5 @@
 //
-//  rpnCalcVariableValues.h
+//  VariableValues.h
 //  rpnCalc
 //
 //  Created by Sef Kloninger on 4/26/12.
