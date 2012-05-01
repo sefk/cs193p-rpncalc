@@ -52,13 +52,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="FBQ-YM-qpZ">
-                                <rect key="frame" x="0.0" y="20" width="640" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -67,7 +60,6 @@
                     <connections>
                         <outlet property="graphView" destination="Cmy-Tg-tvN" id="gCS-qI-iZN"/>
                         <outlet property="lineModeSwitch" destination="GQb-Dc-pQf" id="GXp-KW-xa0"/>
-                        <outlet property="programDescriptionLabel" destination="FBQ-YM-qpZ" id="1tX-0n-nJF"/>
                         <outlet property="topToolbar" destination="yh4-T1-tQ5" id="DMP-pW-H1t"/>
                         <outlet property="view" destination="D8d-Mg-9XD" id="ZZg-ro-6uP"/>
                     </connections>

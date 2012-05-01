@@ -138,6 +138,15 @@
     
     [self.brain clear];
     [self refreshDisplayLog];
+
+    // iPad -- clear out the graph by setting the program to nil
+    id detailController = [self.splitViewController.viewControllers lastObject];
+    if ([detailController isKindOfClass:[GraphViewController class]])
+        // (and not nil of course...)
+    {
+        GraphViewController * detailGraphViewController = detailController;
+        [detailGraphViewController setProgram:nil];
+    }
 }
 
 
@@ -181,7 +190,9 @@
         [detailGraphViewController setProgram:self.brain.program];
     } else {
         // iPhone -- segue to Graph
-        [self performSegueWithIdentifier:@"ShowGraph" sender:self];
+        if ([self.brain.program count] > 0) {
+            [self performSegueWithIdentifier:@"ShowGraph" sender:self];
+        }
     }
 }
 
