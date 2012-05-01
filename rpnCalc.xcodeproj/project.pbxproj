@@ -20,10 +20,6 @@
 		86C53D18154F9E88000B38BE /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C53D15154F9E88000B38BE /* CalculatorViewController.m */; };
 		86C53D1E154F9E93000B38BE /* Operator.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C53D1B154F9E93000B38BE /* Operator.m */; };
 		86C53D1F154F9E93000B38BE /* VariableValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C53D1D154F9E93000B38BE /* VariableValues.m */; };
-		86C53D2C154FA900000B38BE /* calculator-icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C53D28154FA900000B38BE /* calculator-icon-57.png */; };
-		86C53D2D154FA900000B38BE /* calculator-icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C53D29154FA900000B38BE /* calculator-icon-72.png */; };
-		86C53D2E154FA900000B38BE /* calculator-icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C53D2A154FA900000B38BE /* calculator-icon-114.png */; };
-		86C53D2F154FA900000B38BE /* calculator-icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C53D2B154FA900000B38BE /* calculator-icon-144.png */; };
 		86C53D31154FA921000B38BE /* calculator-icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C53D30154FA920000B38BE /* calculator-icon-57.png */; };
 		86C53D33154FA983000B38BE /* calculator-icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C53D32154FA983000B38BE /* calculator-icon-114.png */; };
 		86C53D35154FA98B000B38BE /* calculator-icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C53D34154FA98B000B38BE /* calculator-icon-72.png */; };
@@ -55,14 +51,10 @@
 		86C53D1B154F9E93000B38BE /* Operator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operator.m; sourceTree = "<group>"; };
 		86C53D1C154F9E93000B38BE /* VariableValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableValues.h; sourceTree = "<group>"; };
 		86C53D1D154F9E93000B38BE /* VariableValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableValues.m; sourceTree = "<group>"; };
-		86C53D28154FA900000B38BE /* calculator-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calculator-icon-57.png"; path = "icons/calculator-icon-57.png"; sourceTree = "<group>"; };
-		86C53D29154FA900000B38BE /* calculator-icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calculator-icon-72.png"; path = "icons/calculator-icon-72.png"; sourceTree = "<group>"; };
-		86C53D2A154FA900000B38BE /* calculator-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calculator-icon-114.png"; path = "icons/calculator-icon-114.png"; sourceTree = "<group>"; };
-		86C53D2B154FA900000B38BE /* calculator-icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calculator-icon-144.png"; path = "icons/calculator-icon-144.png"; sourceTree = "<group>"; };
-		86C53D30154FA920000B38BE /* calculator-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator-icon-57.png"; sourceTree = "<group>"; };
-		86C53D32154FA983000B38BE /* calculator-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator-icon-114.png"; sourceTree = "<group>"; };
-		86C53D34154FA98B000B38BE /* calculator-icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator-icon-72.png"; sourceTree = "<group>"; };
-		86C53D36154FA98F000B38BE /* calculator-icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator-icon-144.png"; sourceTree = "<group>"; };
+		86C53D30154FA920000B38BE /* calculator-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calculator-icon-57.png"; path = "../calculator-icon-57.png"; sourceTree = "<group>"; };
+		86C53D32154FA983000B38BE /* calculator-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calculator-icon-114.png"; path = "../calculator-icon-114.png"; sourceTree = "<group>"; };
+		86C53D34154FA98B000B38BE /* calculator-icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calculator-icon-72.png"; path = "../calculator-icon-72.png"; sourceTree = "<group>"; };
+		86C53D36154FA98F000B38BE /* calculator-icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "calculator-icon-144.png"; path = "../calculator-icon-144.png"; sourceTree = "<group>"; };
 		86DF3F63154B18FD001F9F7D /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
 		86DF3F64154B18FD001F9F7D /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
 		86F2DA491549DCFF00689699 /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
@@ -86,10 +78,6 @@
 		86981EFE1538B9E40055EC7D = {
 			isa = PBXGroup;
 			children = (
-				86C53D36154FA98F000B38BE /* calculator-icon-144.png */,
-				86C53D34154FA98B000B38BE /* calculator-icon-72.png */,
-				86C53D32154FA983000B38BE /* calculator-icon-114.png */,
-				86C53D30154FA920000B38BE /* calculator-icon-57.png */,
 				86981F131538B9E40055EC7D /* rpnCalc */,
 				86981F0C1538B9E40055EC7D /* Frameworks */,
 				86981F0A1538B9E40055EC7D /* Products */,
@@ -117,8 +105,8 @@
 		86981F131538B9E40055EC7D /* rpnCalc */ = {
 			isa = PBXGroup;
 			children = (
-				86981F1F1538B9E40055EC7D /* iPhone.storyboard */,
 				8657E8F7154F9D72003F4315 /* iPad.storyboard */,
+				86981F1F1538B9E40055EC7D /* iPhone.storyboard */,
 				86C53D14154F9E88000B38BE /* CalculatorViewController.h */,
 				86C53D15154F9E88000B38BE /* CalculatorViewController.m */,
 				86C53D10154F9E88000B38BE /* CalculatorAppDelegate.h */,
@@ -143,14 +131,14 @@
 		86981F141538B9E40055EC7D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				86C53D28154FA900000B38BE /* calculator-icon-57.png */,
-				86C53D29154FA900000B38BE /* calculator-icon-72.png */,
-				86C53D2A154FA900000B38BE /* calculator-icon-114.png */,
-				86C53D2B154FA900000B38BE /* calculator-icon-144.png */,
 				86981F151538B9E40055EC7D /* rpnCalc-Info.plist */,
 				86981F161538B9E40055EC7D /* InfoPlist.strings */,
 				86981F191538B9E40055EC7D /* main.m */,
 				86981F1B1538B9E40055EC7D /* rpnCalc-Prefix.pch */,
+				86C53D36154FA98F000B38BE /* calculator-icon-144.png */,
+				86C53D34154FA98B000B38BE /* calculator-icon-72.png */,
+				86C53D32154FA983000B38BE /* calculator-icon-114.png */,
+				86C53D30154FA920000B38BE /* calculator-icon-57.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -209,10 +197,6 @@
 				86981F181538B9E40055EC7D /* InfoPlist.strings in Resources */,
 				86981F211538B9E40055EC7D /* iPhone.storyboard in Resources */,
 				8657E8F9154F9D72003F4315 /* iPad.storyboard in Resources */,
-				86C53D2C154FA900000B38BE /* calculator-icon-57.png in Resources */,
-				86C53D2D154FA900000B38BE /* calculator-icon-72.png in Resources */,
-				86C53D2E154FA900000B38BE /* calculator-icon-114.png in Resources */,
-				86C53D2F154FA900000B38BE /* calculator-icon-144.png in Resources */,
 				86C53D31154FA921000B38BE /* calculator-icon-57.png in Resources */,
 				86C53D33154FA983000B38BE /* calculator-icon-114.png in Resources */,
 				86C53D35154FA98B000B38BE /* calculator-icon-72.png in Resources */,
