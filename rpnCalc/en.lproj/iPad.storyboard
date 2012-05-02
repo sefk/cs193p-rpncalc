@@ -495,7 +495,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ejO-79-Q99" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="c6e-Uc-vbd" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <value key="contentSizeForViewInPopover" type="size" width="320" height="400"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Tb9-on-Si8">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -528,6 +527,7 @@
             <relationships>
                 <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
                 <relationship kind="outlet" name="lineModeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="myPopoverController" candidateClass="UIPopoverController"/>
                 <relationship kind="outlet" name="programDescriptionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
             </relationships>

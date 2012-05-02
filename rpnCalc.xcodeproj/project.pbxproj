@@ -32,7 +32,6 @@
 		8618B36B154DE02800792251 /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
 		8618B36C154DE02800792251 /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 		8657E8F8154F9D72003F4315 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = rpnCalc/en.lproj/iPad.storyboard; sourceTree = "<group>"; };
-		8688648F155073C100D9C665 /* ToolbarButtonPresenterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ToolbarButtonPresenterProtocol.h; sourceTree = "<group>"; };
 		86981F091538B9E40055EC7D /* rpnCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rpnCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86981F0D1538B9E40055EC7D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		86981F0F1538B9E40055EC7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,7 +109,6 @@
 				86981F1F1538B9E40055EC7D /* iPhone.storyboard */,
 				86C53D14154F9E88000B38BE /* CalculatorViewController.h */,
 				86C53D15154F9E88000B38BE /* CalculatorViewController.m */,
-				8688648F155073C100D9C665 /* ToolbarButtonPresenterProtocol.h */,
 				86C53D10154F9E88000B38BE /* CalculatorAppDelegate.h */,
 				86C53D11154F9E88000B38BE /* CalculatorAppDelegate.m */,
 				86C53D12154F9E88000B38BE /* CalculatorBrain.h */,

@@ -16,6 +16,7 @@
 @property (nonatomic, weak) IBOutlet UISwitch *  lineModeSwitch;
 @property (nonatomic, weak) IBOutlet GraphView * graphView;
 @property (nonatomic, weak) IBOutlet UIToolbar * topToolbar;
+@property (nonatomic, strong) IBOutlet UIPopoverController * myPopoverController;
 
 @property (nonatomic, strong) VariableValues * varsForEvaluation;
 
@@ -111,23 +112,6 @@
 }
 
 
-// Toolbar Button Protocol
-
-@synthesize barButtonItem = _barButtonItem;
-
-- (void) setBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    if (_barButtonItem != barButtonItem) {
-        NSMutableArray * newItems = [self.topToolbar.items mutableCopy];
-        if (_barButtonItem) [newItems removeObject:_barButtonItem];
-        if (barButtonItem)  [newItems insertObject:barButtonItem atIndex:0];  //left
-        self.topToolbar.items = newItems;
-        _barButtonItem = barButtonItem;
-    }
-    
-}
-
-
 // OTHERS
 
 - (void) saveDataToPermanentStore
@@ -208,6 +192,58 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;  // all rotations OK
+}    
+    
+
+//
+// Split View Delegate 
+// all the rigamarole in here to present a popover (whew!)
+//
+
+@synthesize myPopoverController = _myPopoverController;
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.splitViewController.delegate = self;
 }
+
+- (void) splitViewController:(UISplitViewController *)svc
+      willHideViewController:(UIViewController *)aViewController
+           withBarButtonItem:(UIBarButtonItem *)barButtonItem
+        forPopoverController:(UIPopoverController *)pc
+{
+    // add button to toolbar
+    barButtonItem.title = @"Calculator";
+    NSMutableArray *items = [[self.topToolbar items] mutableCopy];
+    [items insertObject:barButtonItem atIndex:0];
+    [self.topToolbar setItems:items animated:YES];
+    self.myPopoverController = pc;
+} 
+
+- (void)splitViewController:(UISplitViewController *)svc 
+     willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    // remove button from toolbar
+    NSMutableArray *items = [[self.topToolbar items] mutableCopy];
+    [items removeObjectAtIndex:0];
+    [self.topToolbar setItems:items animated:YES];
+    self.myPopoverController = nil;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc
+   shouldHideViewController:(UIViewController *)vc
+              inOrientation:(UIInterfaceOrientation)orientation
+{
+    if (self.splitViewController) {
+        // iPad
+        return UIInterfaceOrientationIsPortrait(orientation);
+    } else {
+        // iPhone
+        return NO;
+    }
+}
+
 
 @end

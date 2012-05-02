@@ -10,7 +10,6 @@
 #import "CalculatorBrain.h"
 #import "VariableValues.h"
 #import "GraphViewController.h"
-#import "ToolbarButtonPresenterProtocol.h"
 
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL entering;
@@ -174,6 +173,7 @@
 }
 
 
+
 //
 // iPad:   Send program to graph pane
 // iPhone: Bring up Graph by Segue
@@ -196,7 +196,6 @@
     }
 }
 
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowGraph"]) {
@@ -204,74 +203,21 @@
     }
 }
 
-
 - (void)viewDidUnload {
     [self setDisplayLog:nil];
     [super viewDidUnload];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    return YES;
-}
-
-
-//
-// Split View Delegate 
-//
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    self.splitViewController.delegate = self;
-}
-
-// Idiom to get the detail for split view.  if iPhone, returns nil.
-- (id <ToolbarButtonPresenter>) toolbarButtonPresenter
-{
-    id detailVC = [self.splitViewController.viewControllers lastObject];
-    if (![detailVC conformsToProtocol:@protocol(ToolbarButtonPresenter)]) {
-        detailVC = nil;
-    }
-    return detailVC;
-}
-
-- (BOOL)splitViewController:(UISplitViewController *)svc
-   shouldHideViewController:(UIViewController *)vc
-              inOrientation:(UIInterfaceOrientation)orientation
-{
-    id detailVC = [self toolbarButtonPresenter];
-    if (!detailVC) {
-        // iPhone
-        return NO;
-    } else {
+    if (self.splitViewController) {
         // iPad
+        return YES;
+    } else {
+        // iPhone
         return UIInterfaceOrientationIsPortrait(orientation);
     }
 }
-
-
-- (void) splitViewController:(UISplitViewController *)svc
-      willHideViewController:(UIViewController *)aViewController
-           withBarButtonItem:(UIBarButtonItem *)barButtonItem
-        forPopoverController:(UIPopoverController *)pc
-{
-    barButtonItem.title = @"Calculator";
-    [self toolbarButtonPresenter].barButtonItem = barButtonItem;
-    
-    // can't get popunder working - 5/01
-    //self.myPopoverController = pc;
-} 
-
-- (void)splitViewController:(UISplitViewController *)svc 
-     willShowViewController:(UIViewController *)aViewController
-  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    [self toolbarButtonPresenter].barButtonItem = nil;
-    // can't get popunder working - 5/01
-    //self.myPopoverController = nil;
-}
-
 
 
 @end

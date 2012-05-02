@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GraphView.h"
-#import "ToolbarButtonPresenterProtocol.h"
 
-@interface GraphViewController : UIViewController <ToolbarButtonPresenter>
+@interface GraphViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) id program;
 
