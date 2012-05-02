@@ -226,8 +226,9 @@
 
 + (NSSet *) setWithAllOperatorStrings
 {
-    // TODO: there has to be a better way to do this, but would mean non-lazy instantiation of all
-    // the 
+    // TODO: store in class static so we're not recreating all the time
+    
+    // TODO: use introspection or some other way to make this more reliable.
     return [NSSet setWithObjects:@"+",
                                  @"-",
                                  @"*",
