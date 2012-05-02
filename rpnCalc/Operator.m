@@ -226,18 +226,23 @@
 
 + (NSSet *) setWithAllOperatorStrings
 {
-    // TODO: store in class static so we're not recreating all the time
-    
+
+    static NSSet * _opSetCache = nil;
+
     // TODO: use introspection or some other way to make this more reliable.
-    return [NSSet setWithObjects:@"+",
-                                 @"-",
-                                 @"*",
-                                 @"/",
-                                 @"x^2",
-                                 @"sqrt",
-                                 @"sin",
-                                 @"cos", 
-            nil];
+    if (!_opSetCache) {
+        _opSetCache = [[NSSet alloc] initWithObjects:
+                                @"+",
+                                @"-",
+                                @"*",
+                                @"/",
+                                @"x^2",
+                                @"sqrt",
+                                @"sin",
+                                @"cos", 
+                                nil];
+    }
+    return _opSetCache;
 }
 
    
