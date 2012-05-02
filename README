@@ -24,3 +24,16 @@ TODO
 
 Icon courtesy of PSD Graphics (http://www.psdgraphics.com/), free for non-commercial 
 use.  Thanks guys!
+
+
+
+Current profiling (iPad, complicated function with lots of panning and pinching):
+
+Running      Time    Self        Symbol Name
+7178.0ms   34.8%    7178.0      -[GraphView drawLineBetweenPointA:andB:inContext:]
+3751.0ms   18.1%    3751.0      +[CalculatorBrain popAndEvaluate:usingVariableDict:]
+1639.0ms    7.9%    1639.0      -[Operator evaluateOperand:withOperand:]
+1341.0ms    6.5%    1341.0      +[CalculatorBrain isOperator:]
+1186.0ms    5.7%    1186.0      +[CalculatorBrain runProgram:usingVariableDict:]
+891.0ms      4.3%    891.0      +[Operator operatorFromOpname:]
+
