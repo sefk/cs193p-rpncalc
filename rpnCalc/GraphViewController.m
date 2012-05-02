@@ -16,6 +16,9 @@
 @property (nonatomic, weak) IBOutlet UISwitch *  lineModeSwitch;
 @property (nonatomic, weak) IBOutlet GraphView * graphView;
 @property (nonatomic, weak) IBOutlet UIToolbar * topToolbar;
+
+@property (nonatomic, strong) VariableValues * varsForEvaluation;
+
 @end
 
 
@@ -69,7 +72,19 @@
 @synthesize topToolbar = _topToolbar;
 
 
+//
 // Data Source Protocol
+//
+// we keep using this local variable for evaluation, changing the value for "X" over 
+// and over again.
+//
+
+@synthesize varsForEvaluation = _varsForEvaluation;
+- (VariableValues *) varsForEvaluation
+{
+    if (!_varsForEvaluation) _varsForEvaluation = [[VariableValues alloc] init];
+    return _varsForEvaluation;
+}
 
 - (double) evaluateAtX:(double)xValue
           forGraphView:(GraphView *)sender
@@ -77,9 +92,10 @@
     float yValue;
     NSNumber * xNum = [[NSNumber alloc] initWithDouble:xValue];
     
-    VariableValues * vars = [[VariableValues alloc] init];
-    [vars.dict setValue:xNum forKey:@"X"];
-    yValue = [CalculatorBrain runProgram:self.program usingVariableDict:vars.dict];
+    NSMutableDictionary * varDict = self.varsForEvaluation.dict;
+    
+    [varDict setValue:xNum forKey:@"X"];
+    yValue = [CalculatorBrain runProgram:self.program usingVariableDict:varDict];
     
     return yValue;
 }
