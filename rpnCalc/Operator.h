@@ -45,5 +45,6 @@
 
 + (NSSet *) setWithAllOperatorStrings;
 
++ (NSMutableDictionary *) operatorCache;
 
 @end

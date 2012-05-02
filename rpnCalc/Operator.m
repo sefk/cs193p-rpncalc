@@ -41,14 +41,42 @@
 }
 
 
-// Factory.  Returns an operator class set up with all you need for that 
+//
+// Class Method -- Creation.  
+//
+// Return an operator class set up with all you need for that 
 // particular operator.  Lots of static construction junk in here.
+//
+
++ (NSMutableDictionary *)operatorCache
+{
+    static NSMutableDictionary * _operatorCacheDict = nil;
+    
+    if (!_operatorCacheDict) {
+        _operatorCacheDict = [[NSMutableDictionary alloc] init];
+    }
+    return _operatorCacheDict;
+}
 
 + (Operator *) operatorFromOpname:(NSString *)opname
 {
-    // TODO: add memoization for efficiency
-    return [[Operator alloc] initWithName:opname];
+    Operator * result;
+    
+    id cachedOperator = [[self operatorCache] objectForKey:opname];
+    if (cachedOperator) {
+        result = cachedOperator;
+    } else {
+        result = [[Operator alloc] initWithName:opname];   // expensive construction
+        [[self operatorCache] setObject:result forKey:opname];  // cache
+    }
+
+    return result;
 }
+
+
+
+// Instance Initialization
+
 
 - (id) initWithName:(NSString *)opname
 {
