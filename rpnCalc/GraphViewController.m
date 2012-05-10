@@ -10,8 +10,9 @@
 #import "GraphView.h"
 #import "CalculatorBrain.h"
 #import "VariableValues.h"
+#import "FavoritesPopoverTableViewController.h"
 
-@interface GraphViewController () <GraphViewDataSource>
+@interface GraphViewController () <GraphViewDataSource, FavoritesGraphSelectionProtocol>
 @property (nonatomic, weak) IBOutlet UILabel *   programDescriptionLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *  lineModeSwitch;
 @property (nonatomic, weak) IBOutlet GraphView * graphView;
@@ -243,6 +244,39 @@
         // iPhone
         return NO;
     }
+}
+
+// Favorites Popover support
+
+#define FAVORITES_KEY @"GraphViewController.favorites"
+
+- (IBAction)addProgramToFavorite 
+{
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    assert(defaults);
+    NSMutableArray * programs = [[defaults arrayForKey:FAVORITES_KEY]
+                                 mutableCopy];
+    if (!programs) programs = [[NSMutableArray alloc] init];
+    [programs addObject:self.program];
+    [defaults setObject:programs forKey:FAVORITES_KEY];
+    [defaults synchronize];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShowFavoritesPopover"]) {
+        FavoritesPopoverTableViewController * favVC = segue.destinationViewController; 
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        assert(defaults);
+        favVC.programs = [defaults arrayForKey:FAVORITES_KEY];
+        favVC.delegate = self;
+    }
+}
+
+- (void)selectedProgram:(id)program
+      byFavoritePopover:(FavoritesPopoverTableViewController *) sender
+{
+    self.program = program;
 }
 
 

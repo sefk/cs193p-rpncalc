@@ -32,6 +32,23 @@
                             <view contentMode="scaleToFill" id="Cmy-Tg-tvN" customClass="GraphView">
                                 <rect key="frame" x="0.0" y="44" width="768" height="960"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DEM-e6-9v0">
+                                        <rect key="frame" x="601" y="903" width="147" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Add To Favorites">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addProgramToFavorite" destination="Bnh-JU-ztF" eventType="touchUpInside" id="qbN-Dp-aqL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="yh4-T1-tQ5">
@@ -43,12 +60,19 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="s9m-8j-Jni"/>
                                     <barButtonItem style="plain" id="S3v-EV-dNL">
                                         <switch key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="GQb-Dc-pQf">
-                                            <rect key="frame" x="677" y="9" width="79" height="27"/>
+                                            <rect key="frame" x="598" y="9" width="79" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <connections>
                                                 <action selector="lineModeSwitchAction" destination="Bnh-JU-ztF" eventType="valueChanged" id="TcH-yL-w4j"/>
                                             </connections>
                                         </switch>
+                                    </barButtonItem>
+                                    <barButtonItem title="Favorites" id="hV7-Fh-Mcd">
+                                        <connections>
+                                            <segue destination="dey-es-kEl" kind="popover" identifier="ShowFavoritesPopover" popoverAnchorBarButtonItem="hV7-Fh-Mcd" id="95L-h1-KX0">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -66,6 +90,45 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="-2987" y="-749"/>
+        </scene>
+        <!--Favorites Popover Table View Controller-->
+        <scene sceneID="Bn8-3b-fYx">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e1Q-NR-R8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="dey-es-kEl" customClass="FavoritesPopoverTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Lz2-6D-E8J">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoritesPrototypeRow" textLabel="EPf-8v-PEV" style="IBUITableViewCellStyleDefault" id="ZSO-Cl-gfv">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EPf-8v-PEV">
+                                            <rect key="frame" x="10" y="0.0" width="748" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dey-es-kEl" id="H46-C6-GQt"/>
+                            <outlet property="delegate" destination="dey-es-kEl" id="FrD-Ez-v9F"/>
+                        </connections>
+                    </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="400"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="-1997" y="-755"/>
         </scene>
         <!--Calculator View Controller - rpnCalc-->
         <scene sceneID="WrL-nl-68W">
@@ -508,31 +571,6 @@
             <point key="canvasLocation" x="-2987" y="-1836"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CalculatorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="displayCurrent" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="displayLog" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="GraphView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dataSource"/>
-            </relationships>
-        </class>
-        <class className="GraphViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
-                <relationship kind="outlet" name="lineModeSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="myPopoverController" candidateClass="UIPopoverController"/>
-                <relationship kind="outlet" name="programDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
