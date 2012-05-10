@@ -11,12 +11,17 @@
 #import "CalculatorBrain.h"
 #import "VariableValues.h"
 #import "FavoritesPopoverTableViewController.h"
+#import "FavoritesPushedTableViewController.h"
 
-@interface GraphViewController () <GraphViewDataSource, FavoritesGraphSelectionProtocol>
-@property (nonatomic, weak) IBOutlet UILabel *   programDescriptionLabel;
-@property (nonatomic, weak) IBOutlet UISwitch *  lineModeSwitch;
-@property (nonatomic, weak) IBOutlet GraphView * graphView;
-@property (nonatomic, weak) IBOutlet UIToolbar * topToolbar;
+@interface GraphViewController () 
+                <GraphViewDataSource, 
+                FavoritesPopoverGraphSelectionProtocol,
+                FavoritesPushedGraphSelectionProtocol>
+
+@property (nonatomic, weak)   IBOutlet UILabel *   programDescriptionLabel;
+@property (nonatomic, weak)   IBOutlet UISwitch *  lineModeSwitch;
+@property (nonatomic, weak)   IBOutlet GraphView * graphView;
+@property (nonatomic, weak)   IBOutlet UIToolbar * topToolbar;
 @property (nonatomic, strong) IBOutlet UIPopoverController * myPopoverController;
 
 @property (nonatomic, strong) VariableValues * varsForEvaluation;
@@ -246,10 +251,12 @@
     }
 }
 
-// Favorites Popover support
+// Favorites Support
+// Popover on iPad, push screen on iPhone
 
 #define FAVORITES_KEY @"GraphViewController.favorites"
 
+// same action for both iPad and iPhone
 - (IBAction)addProgramToFavorite 
 {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -262,10 +269,30 @@
     [defaults synchronize];
 }
 
+- (void)selectedProgram:(id)program
+      byFavoritePopoverTVC:(FavoritesPopoverTableViewController *) sender
+{
+    self.program = program;
+}
+
+- (void)selectedProgram:(id)program
+      byFavoritePushedTVC:(FavoritesPushedTableViewController *) sender
+{
+    self.program = program;
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowFavoritesPopover"]) {
+        // IPAD
         FavoritesPopoverTableViewController * favVC = segue.destinationViewController; 
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        assert(defaults);
+        favVC.programs = [defaults arrayForKey:FAVORITES_KEY];
+        favVC.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"PushFavorites"]) {
+        // IPHONE
+        FavoritesPushedTableViewController * favVC = segue.destinationViewController; 
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
         assert(defaults);
         favVC.programs = [defaults arrayForKey:FAVORITES_KEY];
@@ -273,11 +300,6 @@
     }
 }
 
-- (void)selectedProgram:(id)program
-      byFavoritePopover:(FavoritesPopoverTableViewController *) sender
-{
-    self.program = program;
-}
 
 
 @end

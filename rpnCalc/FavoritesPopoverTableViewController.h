@@ -10,16 +10,16 @@
 
 @class FavoritesPopoverTableViewController;
 
-@protocol FavoritesGraphSelectionProtocol <NSObject>
+@protocol FavoritesPopoverGraphSelectionProtocol <NSObject>
 
 @optional - (void)selectedProgram:(id)program
-                byFavoritePopover:(FavoritesPopoverTableViewController *) sender;
+                byFavoritePopoverTVC:(FavoritesPopoverTableViewController *) sender;
 
 @end
 
 @interface FavoritesPopoverTableViewController : UITableViewController
 
 @property NSArray * programs;
-@property id<FavoritesGraphSelectionProtocol> delegate;
+@property id<FavoritesPopoverGraphSelectionProtocol> delegate;
 
 @end

@@ -1,19 +1,19 @@
 //
-//  FavoritesPopoverTableViewController.m
+//  FavoritesPushedTableViewController.m
 //  rpnCalc
 //
 //  Created by Sef Kloninger on 5/10/12.
 //  Copyright (c) 2012 Peek 222 Software. All rights reserved.
 //
 
-#import "FavoritesPopoverTableViewController.h"
+#import "FavoritesPushedTableViewController.h"
 #import "CalculatorBrain.h"
 
-@interface FavoritesPopoverTableViewController ()
+@interface FavoritesPushedTableViewController ()
 
 @end
 
-@implementation FavoritesPopoverTableViewController
+@implementation FavoritesPushedTableViewController
 
 @synthesize programs = _programs;
 @synthesize delegate = _delegate;
@@ -47,7 +47,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Table view data source
@@ -59,10 +59,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FavoritesPrototypeRow";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];    
-    cell.textLabel.text = [@"y = " stringByAppendingString:[CalculatorBrain describeProgram:[self.programs objectAtIndex:indexPath.row]]];
+    static NSString *CellIdentifier = @"PushedFavoritePrototype";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
+    cell.textLabel.text = [@"y = " stringByAppendingString:[CalculatorBrain describeProgram:[self.programs objectAtIndex:indexPath.row]]];
     
     return cell;
 }
@@ -111,7 +111,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id selProg = [self.programs objectAtIndex:indexPath.row];
-    [self.delegate selectedProgram:selProg byFavoritePopoverTVC:self];
+    [self.delegate selectedProgram:selProg byFavoritePushedTVC:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
