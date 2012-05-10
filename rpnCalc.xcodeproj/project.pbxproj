@@ -10,6 +10,7 @@
 		8618B36D154DE02800792251 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8618B36C154DE02800792251 /* GraphViewController.m */; };
 		8657E8F9154F9D72003F4315 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8657E8F7154F9D72003F4315 /* iPad.storyboard */; };
 		865DACA7155C52F1007D5F59 /* FavoritesPopoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865DACA6155C52F1007D5F59 /* FavoritesPopoverTableViewController.m */; };
+		865DACAE155C5E0A007D5F59 /* FavoritesPushedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865DACAD155C5E0A007D5F59 /* FavoritesPushedTableViewController.m */; };
 		86981F0E1538B9E40055EC7D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F0D1538B9E40055EC7D /* UIKit.framework */; };
 		86981F101538B9E40055EC7D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F0F1538B9E40055EC7D /* Foundation.framework */; };
 		86981F121538B9E40055EC7D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86981F111538B9E40055EC7D /* CoreGraphics.framework */; };
@@ -35,6 +36,8 @@
 		8657E8F8154F9D72003F4315 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = rpnCalc/en.lproj/iPad.storyboard; sourceTree = "<group>"; };
 		865DACA5155C52F1007D5F59 /* FavoritesPopoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesPopoverTableViewController.h; sourceTree = "<group>"; };
 		865DACA6155C52F1007D5F59 /* FavoritesPopoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesPopoverTableViewController.m; sourceTree = "<group>"; };
+		865DACAC155C5E0A007D5F59 /* FavoritesPushedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesPushedTableViewController.h; sourceTree = "<group>"; };
+		865DACAD155C5E0A007D5F59 /* FavoritesPushedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesPushedTableViewController.m; sourceTree = "<group>"; };
 		86981F091538B9E40055EC7D /* rpnCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rpnCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86981F0D1538B9E40055EC7D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		86981F0F1538B9E40055EC7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,6 +113,8 @@
 			children = (
 				8657E8F7154F9D72003F4315 /* iPad.storyboard */,
 				86981F1F1538B9E40055EC7D /* iPhone.storyboard */,
+				865DACAC155C5E0A007D5F59 /* FavoritesPushedTableViewController.h */,
+				865DACAD155C5E0A007D5F59 /* FavoritesPushedTableViewController.m */,
 				865DACA5155C52F1007D5F59 /* FavoritesPopoverTableViewController.h */,
 				865DACA6155C52F1007D5F59 /* FavoritesPopoverTableViewController.m */,
 				86C53D14154F9E88000B38BE /* CalculatorViewController.h */,
@@ -226,6 +231,7 @@
 				86C53D1E154F9E93000B38BE /* Operator.m in Sources */,
 				86C53D1F154F9E93000B38BE /* VariableValues.m in Sources */,
 				865DACA7155C52F1007D5F59 /* FavoritesPopoverTableViewController.m in Sources */,
+				865DACAE155C5E0A007D5F59 /* FavoritesPushedTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
